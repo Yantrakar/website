@@ -1,0 +1,47 @@
+name: Deploy static site to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    # Daily refresh of the Products section from GitHub (new tagged repos, releases)
+    - cron: "23 4 * * *"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Refresh products from GitHub
+        run: python3 tools/build_products.py
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Collect site files
+        # Publish only what the pages use; notes, tools and config stay out of the site
+        run: |
+          mkdir _site
+          cp *.html styles.css site.js favicon.svg favicon-32.png apple-touch-icon.png robots.txt sitemap.xml CNAME _site/
+          rsync -a --exclude='*.md' assets _site/
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

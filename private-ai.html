@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Private AI · Yantrakar</title>
+<meta name="description" content="AI that runs inside your network, for data that can&#39;t leave the building. The software is mostly open source, and my work is choosing a model per use case and making it run on your hardware.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Private AI · Yantrakar">
+<meta property="og:description" content="AI that runs inside your network, for data that can&#39;t leave the building. The software is mostly open source, and my work is choosing a model per use case and making it run on your hardware.">
+<meta property="og:url" content="https://yantrakar.com/private-ai.html">
+<link rel="canonical" href="https://yantrakar.com/private-ai.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://yantrakar.com/assets/brand/png/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{var t=localStorage.getItem("yk-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="styles.css">
+<script src="site.js" defer></script>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap bar">
+<a class="wordmark" href="index.html"><svg class="wm-mark" viewBox="0 0 26 26" width="18" height="18" aria-hidden="true" focusable="false"><path d="M2.00 2.00 L13.00 13.00 L24.00 2.00 M13.00 13.00 L13.00 24.00" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square" stroke-linejoin="miter"/></svg>YANTRAKAR</a>
+<nav class="nav" aria-label="Main">
+<ul>
+<li><a href="robotics.html">Robotics</a></li>
+<li><a href="private-ai.html" aria-current="page">Private AI</a></li>
+<li class="nav-optional"><a href="index.html#products">Products</a></li>
+<li><a href="about.html">About</a></li>
+<li><a class="btn btn-primary btn-sm" href="#contact">Contact</a></li>
+</ul>
+</nav>
+<button class="theme-toggle" type="button" hidden aria-label="Switch theme"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/></svg><span>Theme</span></button>
+</div>
+</header>
+<main id="main">
+<section class="hero" aria-labelledby="hero-h">
+<div class="wrap">
+<div class="hero-text">
+<p class="eyebrow">PRIVATE AI</p>
+<h1 id="hero-h">AI that runs inside your network.</h1>
+<p class="lead">For data that can't leave the building. The software is mostly open source. My work is choosing a model per use case and making it run on your hardware.</p>
+<nav class="page-index" aria-label="On this page"><span class="pi"><a href="#data">01 Data</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#models">02 Models</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#delivery">03 Delivery</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#start">Start here</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#services">Services</a></span></nav>
+</div>
+</div>
+</section>
+
+<section class="sec" id="need" aria-labelledby="need-h">
+<div class="wrap stack">
+<h2 id="need-h">What teams want AI on</h2>
+<p class="prose">Teams want AI on their business intelligence, source code, meeting notes, finance data, project plans and draft quotations. Stopping AI use is not an option anymore. When the data has to stay in-house, the models can run inside your own network.</p>
+<ul class="chips"><li class="chip">Business intelligence</li><li class="chip">Source code</li><li class="chip">Meeting notes</li><li class="chip">Finance data</li><li class="chip">Project plans</li><li class="chip">Draft quotations</li></ul>
+</div>
+</section>
+
+<section class="sec" id="data" aria-labelledby="data-h">
+<div class="wrap stack">
+<div class="sec-head">
+<h2 id="data-h">Where your data goes</h2>
+<p class="prose">Each service has its own rules. These are the tools most teams already have.</p>
+</div>
+<figure class="fig">
+<div class="fig-head"><span class="fig-no">FIG. 04</span><span class="fig-title">WHERE YOUR DATA GOES</span></div>
+<div class="fig-body">
+<table class="dtable">
+<caption class="sr-only">Where your data goes: what each service keeps, whether it trains on it, and the source</caption>
+<thead><tr><th scope="col">Service</th><th scope="col">What is kept</th><th scope="col">Training</th><th scope="col">Source</th></tr></thead>
+<tbody>
+<tr><td data-label="Service">GitHub Copilot chat outside the editor (web, CLI, mobile)</td><td data-label="What is kept">Prompts and suggestions, typically 28 days</td><td data-label="Training">Not used to train the foundation models (per GitHub)</td><td data-label="Source"><a href="https://learn.microsoft.com/en-gb/training/modules/introduction-prompt-engineering-with-github-copilot/4-github-copilot-data" rel="noopener">Microsoft Learn: GitHub Copilot data</a></td></tr>
+<tr><td data-label="Service">Microsoft Copilot (consumer)</td><td data-label="What is kept">Conversations stored 18 months by default</td><td data-label="Training">Used for training by default in many countries; signed-in users can opt out</td><td data-label="Source"><a href="https://support.microsoft.com/en-us/topic/privacy-faq-for-microsoft-copilot-27b3a435-8dc9-4b55-9a4b-58eeb9647a7f" rel="noopener">Microsoft: Privacy FAQ for Microsoft Copilot</a></td></tr>
+<tr><td data-label="Service">Microsoft 365 Copilot (work)</td><td data-label="What is kept">Prompts and responses kept as your admin's retention policy sets</td><td data-label="Training">Set by your organisation's agreement</td><td data-label="Source"><a href="https://learn.microsoft.com/en-us/purview/retention-policies-copilot" rel="noopener">Microsoft Learn: Retention for Copilot</a></td></tr>
+<tr class="hl"><td data-label="Service">Private AI inside your network</td><td data-label="What is kept">Whatever you decide, on your own disks</td><td data-label="Training">Nothing leaves, so nothing is trained elsewhere</td><td data-label="Source">Your own policy</td></tr>
+</tbody>
+</table>
+<p class="footnote">Defaults change. This table is a starting point for your own check, not legal advice.</p>
+<figcaption>What each service keeps by default, and whether it trains on it.</figcaption>
+</div>
+</figure>
+</div>
+</section>
+
+<section class="sec" id="models" aria-labelledby="models-h">
+<div class="wrap split">
+<div class="split-text">
+<h2 id="models-h">A model chosen for each job</h2>
+<p class="prose">So far I see that the largest frontier models are not always needed. What helps is a harness, a small layer that routes each request, searches your documents and checks access, plus an open-weight model that is good enough for each job. My first attempt in 2024 failed because open-weight models weren't ready. They are now good enough for many everyday jobs, and lower running costs made it practical to use hardware a company already has.</p>
+</div>
+<div class="split-fig">
+<figure class="fig" data-anim>
+<div class="fig-head"><span class="fig-no">FIG. 05</span><span class="fig-title">A MODEL PER JOB</span></div>
+<div class="fig-body cq">
+<svg class="f06w wv sw" data-fig="f05" data-v="w" viewBox="0 0 760 344" role="img" aria-labelledby="f06w-t f06w-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f06w-t">One harness and a model per job, inside your network</title>
+<desc id="f06w-d">Inside a dashed boundary labelled your network and your hardware: people and tools (code editor, documents, chat) send requests to a harness made of a router, an index of your data and access control. The harness sends each request to one of four open-weight models: a coding model, a general model for docs, slides and research, a vision model for images and video, and an embedding model for search over your data. A label outside the boundary reads nothing leaves.</desc>
+<defs><marker id="f06w-m" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker><marker id="f06w-ma" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow-accent" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="frame" data-k="frame" x="4" y="4" width="752" height="304" rx="4"/>
+<text class="lbl-mono" x="20" y="27">YOUR NETWORK · YOUR HARDWARE</text>
+<text class="lbl-mono" x="20" y="56">PEOPLE AND TOOLS</text>
+<rect class="box" data-k="tl-code" x="20" y="80" width="150" height="48" rx="2"/>
+<text class="lbl" x="95" y="109" text-anchor="middle">Code editor</text>
+<line class="ln" data-k="cn-code" x1="170" y1="104" x2="210" y2="104" marker-end="url(#f06w-m)"/>
+<rect class="box" data-k="tl-docs" x="20" y="150" width="150" height="48" rx="2"/>
+<text class="lbl" x="95" y="179" text-anchor="middle">Documents</text>
+<line class="ln" data-k="cn-docs" x1="170" y1="174" x2="210" y2="174" marker-end="url(#f06w-m)"/>
+<rect class="box" data-k="tl-chat" x="20" y="220" width="150" height="48" rx="2"/>
+<text class="lbl" x="95" y="249" text-anchor="middle">Chat</text>
+<line class="ln" data-k="cn-chat" x1="170" y1="244" x2="210" y2="244" marker-end="url(#f06w-m)"/>
+<text class="lbl-mono acc" x="210" y="56">HARNESS</text>
+<rect class="box-accent" data-k="harness" x="210" y="64" width="210" height="232" rx="2"/>
+<rect class="item" data-k="it-router" x="226" y="84" width="178" height="42" rx="2"/>
+<text class="lbl" x="315" y="110" text-anchor="middle">Router</text>
+<rect class="item" data-k="it-index" x="226" y="154" width="178" height="42" rx="2"/>
+<text class="lbl" x="315" y="180" text-anchor="middle">Index of your data</text>
+<rect class="item" data-k="it-access" x="226" y="224" width="178" height="42" rx="2"/>
+<text class="lbl" x="315" y="250" text-anchor="middle">Access control</text>
+<text class="lbl-mono" x="460" y="56">OPEN-WEIGHT MODELS</text>
+<rect class="box" data-k="m-coding" x="460" y="64" width="280" height="52" rx="2"/>
+<text class="lbl" x="476" y="86">Coding model</text>
+<text class="sub" x="476" y="104">code and reviews</text>
+<line class="ln" data-k="cm-coding" x1="420" y1="90" x2="460" y2="90" marker-end="url(#f06w-m)"/>
+<rect class="box" data-k="m-general" x="460" y="124" width="280" height="52" rx="2"/>
+<text class="lbl" x="476" y="146">General model</text>
+<text class="sub" x="476" y="164">docs, slides, research</text>
+<line class="ln" data-k="cm-general" x1="420" y1="150" x2="460" y2="150" marker-end="url(#f06w-m)"/>
+<rect class="box" data-k="m-vision" x="460" y="184" width="280" height="52" rx="2"/>
+<text class="lbl" x="476" y="206">Vision model</text>
+<text class="sub" x="476" y="224">images and video</text>
+<line class="ln" data-k="cm-vision" x1="420" y1="210" x2="460" y2="210" marker-end="url(#f06w-m)"/>
+<rect class="box" data-k="m-embed" x="460" y="244" width="280" height="52" rx="2"/>
+<text class="lbl" x="476" y="266">Embedding model</text>
+<text class="sub" x="476" y="284">search over your data</text>
+<line class="ln" data-k="cm-embed" x1="420" y1="270" x2="460" y2="270" marker-end="url(#f06w-m)"/>
+<text class="lbl-mono acc-raw" data-k="t-nothing" x="756" y="332" text-anchor="end">NOTHING LEAVES</text>
+<g class="xm" data-k="x-mark"><line class="ln-accent" x1="633" y1="323" x2="643" y2="333"/><line class="ln-accent" x1="633" y1="333" x2="643" y2="323"/></g>
+</svg>
+<svg class="f06n nv sw" data-fig="f05" data-v="n" viewBox="0 0 320 676" role="img" aria-labelledby="f06n-t f06n-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f06n-t">One harness and a model per job, inside your network</title>
+<desc id="f06n-d">Inside a dashed boundary labelled your network and your hardware: people and tools (code editor, documents, chat) send requests to a harness made of a router, an index of your data and access control. The harness sends each request to one of four open-weight models: a coding model, a general model for docs, slides and research, a vision model for images and video, and an embedding model for search over your data. A label outside the boundary reads nothing leaves.</desc>
+<defs><marker id="f06n-m" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker><marker id="f06n-ma" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow-accent" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="lbl-mono" x="18" y="27">YOUR NETWORK · YOUR HARDWARE</text>
+<text class="lbl-mono" x="14" y="80">PEOPLE AND TOOLS</text>
+<rect class="box" data-k="tl-code" x="14" y="92" width="90" height="44" rx="2"/>
+<text class="lbl" x="59" y="119" text-anchor="middle">Code editor</text>
+<line class="ln" data-k="cn-code" x1="90" y1="136" x2="90" y2="182" marker-end="url(#f06n-m)"/>
+<rect class="box" data-k="tl-docs" x="112" y="92" width="90" height="44" rx="2"/>
+<text class="lbl" x="157" y="119" text-anchor="middle">Documents</text>
+<line class="ln" data-k="cn-docs" x1="188" y1="136" x2="188" y2="182" marker-end="url(#f06n-m)"/>
+<rect class="box" data-k="tl-chat" x="210" y="92" width="90" height="44" rx="2"/>
+<text class="lbl" x="255" y="119" text-anchor="middle">Chat</text>
+<line class="ln" data-k="cn-chat" x1="286" y1="136" x2="286" y2="182" marker-end="url(#f06n-m)"/>
+<text class="lbl-mono acc" x="14" y="172">HARNESS</text>
+<rect class="box-accent" data-k="harness" x="14" y="182" width="286" height="172" rx="2"/>
+<rect class="item" data-k="it-router" x="40" y="204" width="246" height="40" rx="2"/>
+<text class="lbl" x="163" y="229" text-anchor="middle">Router</text>
+<rect class="item" data-k="it-index" x="40" y="252" width="246" height="40" rx="2"/>
+<text class="lbl" x="163" y="277" text-anchor="middle">Index of your data</text>
+<rect class="item" data-k="it-access" x="40" y="300" width="246" height="40" rx="2"/>
+<text class="lbl" x="163" y="325" text-anchor="middle">Access control</text>
+<text class="lbl-mono" x="40" y="382">OPEN-WEIGHT MODELS</text>
+<rect class="box" data-k="m-coding" x="40" y="394" width="260" height="52" rx="2"/>
+<text class="lbl" x="54" y="416">Coding model</text>
+<text class="sub" x="54" y="434">code and reviews</text>
+<line class="ln" data-k="cm-coding" x1="22" y1="420" x2="40" y2="420" marker-end="url(#f06n-m)"/>
+<rect class="box" data-k="m-general" x="40" y="454" width="260" height="52" rx="2"/>
+<text class="lbl" x="54" y="476">General model</text>
+<text class="sub" x="54" y="494">docs, slides, research</text>
+<line class="ln" data-k="cm-general" x1="22" y1="480" x2="40" y2="480" marker-end="url(#f06n-m)"/>
+<rect class="box" data-k="m-vision" x="40" y="514" width="260" height="52" rx="2"/>
+<text class="lbl" x="54" y="536">Vision model</text>
+<text class="sub" x="54" y="554">images and video</text>
+<line class="ln" data-k="cm-vision" x1="22" y1="540" x2="40" y2="540" marker-end="url(#f06n-m)"/>
+<rect class="box" data-k="m-embed" x="40" y="574" width="260" height="52" rx="2"/>
+<text class="lbl" x="54" y="596">Embedding model</text>
+<text class="sub" x="54" y="614">search over your data</text>
+<line class="ln" data-k="cm-embed" x1="22" y1="600" x2="40" y2="600" marker-end="url(#f06n-m)"/>
+<line class="ln" x1="22" y1="354" x2="22" y2="600"/>
+<rect class="frame" data-k="frame" x="2" y="4" width="316" height="638" rx="4"/>
+<text class="lbl-mono acc-raw" data-k="t-nothing" x="316" y="664" text-anchor="end">NOTHING LEAVES</text>
+<g class="xm" data-k="x-mark"><line class="ln-accent" x1="193" y1="655" x2="203" y2="665"/><line class="ln-accent" x1="193" y1="665" x2="203" y2="655"/></g>
+</svg>
+<figcaption>Each request goes through the harness to the model that fits it. Everything stays on your hardware.</figcaption>
+</div>
+</figure>
+
+</div>
+</div>
+</section>
+
+<section class="sec" id="delivery" aria-labelledby="delivery-h">
+<div class="wrap split">
+<div class="split-text">
+<h2 id="delivery-h">How a delivery goes</h2>
+</div>
+<div class="split-fig stack">
+<p class="label-h">Setting it up</p>
+<ol class="steps">
+<li><div><strong>Use-case study.</strong> Which work, which data, who uses it, how often.</div></li>
+<li><div><strong>Model choice.</strong> An open-weight model per use case, tested on your own examples.</div></li>
+<li><div><strong>Deploy on your hardware.</strong> Automated with Ansible, so it can be rebuilt and moved.</div></li>
+<li><div><strong>Index your code and documents.</strong> A local indexer, so answers come from your material.</div></li>
+</ol>
+<div class="callout"><p class="label-h">After that, ongoing</p><p><strong>Monitor and upgrade.</strong> Open-weight models improve quickly. Swapping one in is planned for from the start.</p></div>
+</div>
+</div>
+</section>
+
+<section class="sec" id="notes" aria-labelledby="notes-h">
+<div class="wrap split">
+<div class="split-text">
+<h2 id="notes-h">Before you start</h2>
+</div>
+<div class="split-fig stack">
+<p class="prose">Everyday interactive use needs capable hardware, so I would not judge the idea on a laptop test. Some work runs well on modest hardware, such as the two first use cases below.</p>
+</div>
+</div>
+</section>
+
+<section class="sec" id="start" aria-labelledby="start-h">
+<div class="wrap">
+<figure class="fig fig-callout">
+<div class="fig-head"><span class="fig-title">START HERE</span></div>
+<div class="fig-body">
+<h3 id="start-h">Two good first use cases</h3>
+<div class="start-cols">
+<div>
+<strong>Documentation and user guides.</strong>
+<p>This work can run over longer time slots, so it fits modest hardware and gives useful output early.</p>
+</div>
+<div>
+<strong>Old codebases.</strong>
+<p>Walking through old code with a local indexer, especially when the code can't be disclosed.</p>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</section>
+
+<section class="sec" id="services" aria-labelledby="services-h">
+<div class="wrap">
+<div class="sec-head"><h2 id="services-h">What I can do for you</h2></div>
+<div class="grid-3">
+<div class="service"><h3>Private AI plan</h3><p>An advisory session on use cases, hardware and which models to try first.</p></div>
+<div class="service"><h3>Deployment</h3><p>Open-weight models and tools running on your hardware, automated with Ansible, with Nix where it helps.</p></div>
+<div class="service"><h3>Code and document indexing</h3><p>Local search and questions over codebases and documents that can't be disclosed.</p></div>
+</div>
+</div>
+</section>
+<section class="sec contact" id="contact" aria-labelledby="contact-h">
+<div class="wrap">
+<div class="contact-grid">
+<div class="contact-copy">
+<h2 id="contact-h">Contact</h2>
+<p class="lead">Tell me which data and which work you have in mind.</p>
+<p>Stavanger, Norway</p>
+<p>Remote across EU and India time zones, on-site when needed</p>
+<ul class="plain">
+<li><a href="https://www.linkedin.com/in/sandeepshelke/" rel="noopener">LinkedIn: Sandeep Shelke</a></li>
+<li><a href="https://www.linkedin.com/company/yantrakar/" rel="noopener">LinkedIn: Yantrakar</a></li>
+</ul>
+</div>
+<div class="panel form-panel">
+<form id="contact-form" class="form" action="https://crm.zoho.eu/crm/WebToLeadForm" method="POST" accept-charset="UTF-8">
+<input type="text" style="display:none;" name="xnQsjsdp" value="d9441e56bd94ff751dd7efc44488b5497076b54b8f87b884ffd003ad404ba964">
+<input type="hidden" name="zc_gad" id="zc_gad" value="">
+<input type="text" style="display:none;" name="xmIwtLD" value="6f4bab59505a5b70841eff69fe4ff543896f9afd763da1b713dc5e503f851951000c81bca8b27aaf64baa5543cf4a5b8">
+<input type="text" style="display:none;" name="actionType" value="TGVhZHM=">
+<input type="text" style="display:none;" name="returnURL" value="https://yantrakar.com/thanks.html">
+<input type="text" style="display:none;" name="aG9uZXlwb3Q" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
+<div class="row">
+<div class="field">
+<label for="first-name">First name</label>
+<input id="first-name" name="First Name" type="text" maxlength="40" autocomplete="given-name">
+</div>
+<div class="field">
+<label for="last-name">Last name <span class="req">(required)</span></label>
+<input id="last-name" name="Last Name" type="text" maxlength="80" autocomplete="family-name" required>
+</div>
+</div>
+<div class="field">
+<label for="email">Email <span class="req">(required)</span></label>
+<input id="email" name="Email" type="email" maxlength="100" autocomplete="email" required>
+</div>
+<div class="field">
+<label for="message">What would you like AI to work on? <span class="req">(required)</span></label>
+<textarea id="message" name="Description" rows="5" required></textarea>
+</div>
+<div class="form-actions">
+<button class="btn btn-primary" type="submit">Send →</button>
+</div>
+<p class="form-note">Your details are used only to reply to this message.</p>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="wrap foot">
+<p>© 2026 Yantrakar AS · Stavanger, Norway</p>
+<nav aria-label="Footer">
+<ul>
+<li><a href="robotics.html">Robotics</a></li>
+<li><a href="private-ai.html">Private AI</a></li>
+<li><a href="index.html#products">Products</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="https://www.linkedin.com/company/yantrakar/" rel="noopener">LinkedIn</a></li>
+<li><a href="#top">Back to top ↑</a></li>
+</ul>
+</nav>
+</div>
+</footer>
+</body>
+</html>

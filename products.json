@@ -1,0 +1,48 @@
+{
+  "_readme": "Products shown on the site. Public repos in the GitHub org tagged with `topic` are picked up automatically (description, homepage, latest release). Entries below add or override fields for a repo of the same name, and can add products that are not public repos yet. Order here wins; auto-found repos not listed come after, newest first. An entry with tagline_from takes its text from that live site (meta description, og:description, or the lead paragraph); text/lang are the fallback if the site can't be reached.",
+  "org": "Yantrakar",
+  "topic": "yantrakar-product",
+  "products": [
+    {
+      "repo": "gitpro",
+      "name": "gitpro",
+      "tag": "OPEN SOURCE",
+      "text": "The right git name, email and SSH key for every repo, set once per GitHub or GitLab account. It also stops AI coding assistants from committing or pushing under the wrong identity.",
+      "install": "pipx install gitpro",
+      "links": [
+        {
+          "label": "gitpro.dev",
+          "url": "https://gitpro.dev"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Yantrakar/gitpro"
+        },
+        {
+          "label": "PyPI",
+          "url": "https://pypi.org/project/gitpro/"
+        }
+      ]
+    },
+    {
+      "name": "Verako",
+      "id": "verako",
+      "tag": "LIVE · NORWAY",
+      "tagline_from": "https://verako.no/",
+      "text": "Sjekk om avtalen din er god. Ett svar i kroner, mot tilbudene vi kjenner.",
+      "lang": "nb",
+      "links": [
+        {
+          "label": "verako.no",
+          "url": "https://verako.no"
+        }
+      ]
+    },
+    {
+      "name": "Verako Console",
+      "id": "verako-console",
+      "tag": "COMING SOON · NORWAY",
+      "text": "Your portfolio, expenses and projections in one place, at console.verako.no."
+    }
+  ]
+}
