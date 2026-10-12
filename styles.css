@@ -193,18 +193,6 @@ button.btn{font-family:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Conso
 .page-index a{color:var(--ink-2);text-decoration-color:var(--rule-strong)}
 .page-index a:hover{color:var(--ink)}
 
-/* Proof list */
-.proof{list-style:none;width:100%;max-width:62ch}
-.proof li{
-  display:grid;grid-template-columns:minmax(0,1fr);gap:6px;justify-items:start;
-  padding-block:10px;border-top:1px solid var(--rule);
-}
-.proof li:last-child{border-bottom:1px solid var(--rule)}
-.proof p{color:var(--ink-2)}
-@media (min-width:600px){
-  .proof li{grid-template-columns:7.5rem minmax(0,1fr);gap:16px;align-items:baseline}
-}
-
 /* Tags */
 .tag{display:inline-block;border:1px solid var(--rule);border-radius:2px;padding:2px 6px;color:var(--muted);white-space:nowrap}
 .tag-accent{color:var(--accent-ink)}
