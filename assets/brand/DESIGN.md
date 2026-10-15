@@ -101,7 +101,7 @@ Fallbacks: sans `"Helvetica Neue", Helvetica, Arial, sans-serif`; mono `ui-monos
 - **Callout:** 2px left border in `--accent`, `--accent-tint` fill.
 - **Table:** rules between rows only, mono header. It turns into stacked cards under 720px, with each cell labelled from `data-label`.
 - **Links in text:** `--accent-ink`, 1px underline, 3px offset.
-- **Theme toggle:** ◐ icon plus "Switch to light" or "Switch to dark". The choice is saved in localStorage (`yk-theme`) and set before paint by an inline head script. The button is hidden when JS is off.
+- **Theme toggle:** one 36px icon button, styled like a secondary button (radius 2px, 1px `--rule-strong` border). The icon shows the current choice: a sun for light, a moon for dark, a monitor for system. Each click moves on: from system to the opposite of the device's scheme, then to the device's scheme, then back to system. Light and dark are saved in localStorage (`yk-theme`); system removes the key. An inline head script applies the saved choice before paint. The name and tooltip read "Theme: Light", "Theme: Dark" or "Theme: System", and a status region announces each change. The button is hidden when JS is off. verako.no uses the same one-click pattern.
 - **Focus:** a 2px `--focus` outline with 2px offset on everything interactive.
 
 ## 7. Figures
