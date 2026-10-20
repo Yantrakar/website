@@ -1,0 +1,76 @@
+<svg class="wv sw" viewBox="0 0 760 300" role="img" aria-labelledby="f07w-t f07w-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f07w-t">Self-replication needs four steps; block one and it stops</title>
+<desc id="f07w-d">My own breakdown: four steps a self-replicating model needs, each with what stops it. One, foothold: an agent runs with tools and keys; stopped by least privilege, only the tools the job needs and no standing keys. Two, reach: other machines are reachable; stopped by a segmented network, model servers on their own subnet with no open egress. Three, copy: the model files move to a new host; stopped by watching transfers, alerts on multi-gigabyte model files moving between hosts. Four, run and stay: the copy starts and stays running; stopped when a person starts every rollout and nothing else is allowed to run.</desc>
+<defs><marker id="f07w-m" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="lbl-mono" x="4" y="14">What it needs</text>
+<text class="lbl-mono" x="340" y="14">What stops it</text>
+<rect class="box" x="4" y="28" width="300" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="20" y="49">1  Foothold</text>
+<text class="sub" x="20" y="67">an agent runs with tools and keys</text>
+<rect class="box" x="4" y="100" width="300" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="20" y="121">2  Reach</text>
+<text class="sub" x="20" y="139">other machines are reachable</text>
+<rect class="box" x="4" y="172" width="300" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="20" y="193">3  Copy</text>
+<text class="sub" x="20" y="211">the model files move to a new host</text>
+<rect class="box" x="4" y="244" width="300" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="20" y="265">4  Run and stay</text>
+<text class="sub" x="20" y="283">the copy starts and stays running</text>
+<line class="ln" x1="154" y1="80" x2="154" y2="100" marker-end="url(#f07w-m)"/>
+<line class="ln" x1="154" y1="152" x2="154" y2="172" marker-end="url(#f07w-m)"/>
+<line class="ln" x1="154" y1="224" x2="154" y2="244" marker-end="url(#f07w-m)"/>
+<line class="ln" x1="304" y1="54" x2="340" y2="54" marker-end="url(#f07w-m)"/>
+<line class="ln" x1="304" y1="126" x2="340" y2="126" marker-end="url(#f07w-m)"/>
+<line class="ln" x1="304" y1="198" x2="340" y2="198" marker-end="url(#f07w-m)"/>
+<line class="ln" x1="304" y1="270" x2="340" y2="270" marker-end="url(#f07w-m)"/>
+<rect class="box" x="340" y="28" width="416" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="356" y="49">Least privilege</text>
+<text class="sub" x="356" y="67">only the tools the job needs, no standing keys</text>
+<rect class="box" x="340" y="100" width="416" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="356" y="121">Segmented network</text>
+<text class="sub" x="356" y="139">model servers on their own subnet, no open egress</text>
+<rect class="box" x="340" y="172" width="416" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="356" y="193">Watch transfers</text>
+<text class="sub" x="356" y="211">alert on multi-GB model files moving between hosts</text>
+<rect class="box-accent" x="340" y="244" width="416" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="356" y="265">A person starts every rollout</text>
+<text class="sub" x="356" y="283">nothing else is allowed to run</text>
+</svg>
+<svg class="nv sw" viewBox="0 0 320 664" role="img" aria-labelledby="f07n-t f07n-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f07n-t">Self-replication needs four steps; block one and it stops</title>
+<desc id="f07n-d">My own breakdown: four steps a self-replicating model needs, each with what stops it. One, foothold: an agent runs with tools and keys; stopped by least privilege, only the tools the job needs and no standing keys. Two, reach: other machines are reachable; stopped by a segmented network, model servers on their own subnet with no open egress. Three, copy: the model files move to a new host; stopped by watching transfers, alerts on multi-gigabyte model files moving between hosts. Four, run and stay: the copy starts and stays running; stopped when a person starts every rollout and nothing else is allowed to run.</desc>
+<defs><marker id="f07n-m" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="lbl-mono" x="20" y="14">Each step, and what stops it</text>
+<rect class="box" x="20" y="28" width="280" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="49">1  Foothold</text>
+<text class="sub" x="36" y="67">an agent runs with tools and keys</text>
+<line class="ln" x1="160" y1="80" x2="160" y2="96" marker-end="url(#f07n-m)"/>
+<rect class="box" x="20" y="96" width="280" height="68" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="117">Least privilege</text>
+<text class="sub" x="36" y="135">only the tools the job needs,</text>
+<text class="sub" x="36" y="151">no standing keys</text>
+<rect class="box" x="20" y="192" width="280" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="213">2  Reach</text>
+<text class="sub" x="36" y="231">other machines are reachable</text>
+<line class="ln" x1="160" y1="244" x2="160" y2="260" marker-end="url(#f07n-m)"/>
+<rect class="box" x="20" y="260" width="280" height="68" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="281">Segmented network</text>
+<text class="sub" x="36" y="299">model servers on their own</text>
+<text class="sub" x="36" y="315">subnet, no open egress</text>
+<rect class="box" x="20" y="356" width="280" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="377">3  Copy</text>
+<text class="sub" x="36" y="395">model files move to a new host</text>
+<line class="ln" x1="160" y1="408" x2="160" y2="424" marker-end="url(#f07n-m)"/>
+<rect class="box" x="20" y="424" width="280" height="68" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="445">Watch transfers</text>
+<text class="sub" x="36" y="463">alert on multi-GB model files</text>
+<text class="sub" x="36" y="479">moving between hosts</text>
+<rect class="box" x="20" y="520" width="280" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="541">4  Run and stay</text>
+<text class="sub" x="36" y="559">the copy starts and stays running</text>
+<line class="ln" x1="160" y1="572" x2="160" y2="588" marker-end="url(#f07n-m)"/>
+<rect class="box-accent" x="20" y="588" width="280" height="68" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="609">A person starts every rollout</text>
+<text class="sub" x="36" y="627">nothing else is</text>
+<text class="sub" x="36" y="643">allowed to run</text>
+</svg>

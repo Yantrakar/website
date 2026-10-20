@@ -1,0 +1,43 @@
+<svg class="wv sw" viewBox="0 0 760 280" role="img" aria-labelledby="f03w-t f03w-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f03w-t">One older 8 GB card runs Qwen3.6-35B at usable speed</title>
+<desc id="f03w-d">One older 8 GB Turing card runs Qwen3.6-35B, a mixture-of-experts model, with its expert layers in the machine's main memory. With 8,000 tokens in the context it reads the prompt at about 740 tokens per second (prefill) and writes the answer at about 24 tokens per second (decode). Both rates fall as the context fills up. My own measurements.</desc>
+<defs><marker id="f03w-m" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="box" x="20" y="60" width="250" height="84" rx="3"/>
+<rect class="box" x="44" y="144" width="200" height="8" rx="1"/>
+<circle class="ln" cx="66" cy="102" r="20"/><circle class="dot" cx="66" cy="102" r="3"/>
+<circle class="ln" cx="122" cy="102" r="20"/><circle class="dot" cx="122" cy="102" r="3"/>
+<text class="lbl-mono" x="256" y="80" text-anchor="end">8 GB</text>
+<text class="lbl-mono" x="20" y="186">One Turing card</text>
+<text class="lbl-mono" x="20" y="206">Expert layers in main memory</text>
+<line class="ln" x1="300" y1="134" x2="360" y2="134" marker-end="url(#f03w-m)"/>
+<text class="lbl-mono" x="390" y="36">Qwen3.6-35B · mixture of experts</text>
+<text class="lbl" x="390" y="104" style="font-size:60px">~740</text>
+<text class="sub" x="525" y="104" style="font-size:16px">tok/s</text>
+<text class="lbl-mono" x="390" y="128">Prefill, reading the prompt</text>
+<text class="lbl acc-raw" x="390" y="210" style="font-size:60px">~24</text>
+<text class="sub" x="496" y="210" style="font-size:16px">tok/s</text>
+<text class="lbl-mono" x="390" y="234">Decode, writing the answer</text>
+<text class="lbl-mono" x="390" y="266">8k-token context · both fall as it fills</text>
+</svg>
+<svg class="nv sw" viewBox="0 0 320 410" role="img" aria-labelledby="f03n-t f03n-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f03n-t">One older 8 GB card runs Qwen3.6-35B at usable speed</title>
+<desc id="f03n-d">One older 8 GB Turing card runs Qwen3.6-35B, a mixture-of-experts model, with its expert layers in the machine's main memory. With 8,000 tokens in the context it reads the prompt at about 740 tokens per second (prefill) and writes the answer at about 24 tokens per second (decode). Both rates fall as the context fills up. My own measurements.</desc>
+<rect class="box" x="20" y="16" width="134" height="64" rx="3"/>
+<rect class="box" x="34" y="80" width="106" height="6" rx="1"/>
+<circle class="ln" cx="46" cy="52" r="14"/><circle class="dot" cx="46" cy="52" r="2.5"/>
+<circle class="ln" cx="84" cy="52" r="14"/><circle class="dot" cx="84" cy="52" r="2.5"/>
+<text class="lbl-mono" x="146" y="32" text-anchor="end">8 GB</text>
+<text class="lbl-mono" x="170" y="44">One Turing card</text>
+<text class="lbl-mono" x="170" y="62">Experts in</text>
+<text class="lbl-mono" x="170" y="78">main memory</text>
+<line class="ln" x1="20" y1="110" x2="300" y2="110" opacity=".4"/>
+<text class="lbl-mono" x="20" y="140">Qwen3.6-35B · MoE</text>
+<text class="lbl" x="20" y="200" style="font-size:52px">~740</text>
+<text class="sub" x="138" y="200" style="font-size:15px">tok/s</text>
+<text class="lbl-mono" x="20" y="224">Prefill, reading the prompt</text>
+<text class="lbl acc-raw" x="20" y="298" style="font-size:52px">~24</text>
+<text class="sub" x="113" y="298" style="font-size:15px">tok/s</text>
+<text class="lbl-mono" x="20" y="322">Decode, writing the answer</text>
+<text class="lbl-mono" x="20" y="362">8k-token context</text>
+<text class="lbl-mono" x="20" y="382">Both fall as it fills</text>
+</svg>

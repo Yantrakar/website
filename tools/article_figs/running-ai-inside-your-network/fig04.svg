@@ -1,0 +1,55 @@
+<svg class="wv sw" viewBox="0 0 760 264" role="img" aria-labelledby="f04w-t f04w-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f04w-t">A full context window takes minutes to read; a local index sends only the relevant pieces</title>
+<desc id="f04w-d">An old codebase can go into the model's context window in full. At 250,000 tokens, one 8 GB card reads for about 11 minutes before the model starts writing. A local index, served as an MCP server, sends only the relevant pieces, so the context stays short and the model starts writing sooner.</desc>
+<defs><marker id="f04w-m" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="lbl-mono" x="20" y="22">Old codebase</text>
+<rect class="box" x="20" y="36" width="130" height="24" rx="2"/>
+<rect class="box" x="32" y="66" width="130" height="24" rx="2"/>
+<rect class="box" x="44" y="96" width="130" height="24" rx="2"/>
+<rect class="box" x="20" y="126" width="130" height="24" rx="2"/>
+<rect class="box" x="32" y="156" width="130" height="24" rx="2"/>
+<rect class="box" x="44" y="186" width="130" height="24" rx="2"/>
+<rect class="box" x="20" y="216" width="130" height="24" rx="2"/>
+<line class="ln" x1="186" y1="88" x2="296" y2="88" marker-end="url(#f04w-m)"/>
+<text class="sub" x="241" y="78" text-anchor="middle">everything</text>
+<rect class="box" x="300" y="56" width="440" height="64" rx="2"/>
+<text class="lbl" x="316" y="84">Full window</text>
+<text class="sub" x="316" y="104">250,000 tokens</text>
+<text class="lbl-mono acc-raw" x="300" y="144">About 11 minutes before it starts writing</text>
+<line class="ln" x1="186" y1="208" x2="250" y2="208" marker-end="url(#f04w-m)"/>
+<rect class="box-accent" x="250" y="180" width="120" height="56" rx="2"/>
+<text class="lbl lbl-strong" x="310" y="204" text-anchor="middle">Local index</text>
+<text class="sub" x="310" y="224" text-anchor="middle">MCP server</text>
+<line class="ln" x1="370" y1="208" x2="450" y2="208" marker-end="url(#f04w-m)"/>
+<rect class="box" x="450" y="188" width="150" height="40" rx="2"/>
+<text class="lbl" x="466" y="213">Relevant pieces</text>
+<text class="lbl-mono" x="450" y="254">Short context, it starts writing sooner</text>
+</svg>
+<svg class="nv sw" viewBox="0 0 320 456" role="img" aria-labelledby="f04n-t f04n-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f04n-t">A full context window takes minutes to read; a local index sends only the relevant pieces</title>
+<desc id="f04n-d">An old codebase can go into the model's context window in full. At 250,000 tokens, one 8 GB card reads for about 11 minutes before the model starts writing. A local index, served as an MCP server, sends only the relevant pieces, so the context stays short and the model starts writing sooner.</desc>
+<defs><marker id="f04n-m" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="lbl-mono" x="20" y="18">Old codebase</text>
+<rect class="box" x="20" y="30" width="130" height="20" rx="2"/>
+<rect class="box" x="170" y="30" width="130" height="20" rx="2"/>
+<rect class="box" x="20" y="56" width="130" height="20" rx="2"/>
+<rect class="box" x="170" y="56" width="130" height="20" rx="2"/>
+<rect class="box" x="20" y="82" width="130" height="20" rx="2"/>
+<rect class="box" x="170" y="82" width="130" height="20" rx="2"/>
+<text class="sub" x="20" y="130">Everything:</text>
+<rect class="box" x="20" y="140" width="280" height="56" rx="2"/>
+<text class="lbl" x="34" y="164">Full window</text>
+<text class="sub" x="34" y="184">250,000 tokens</text>
+<text class="lbl-mono acc-raw" x="20" y="218">About 11 minutes before</text>
+<text class="lbl-mono acc-raw" x="20" y="236">it starts writing</text>
+<line class="ln" x1="20" y1="256" x2="300" y2="256" opacity=".4"/>
+<text class="sub" x="20" y="280">Or through the index:</text>
+<rect class="box-accent" x="20" y="292" width="280" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="160" y="315" text-anchor="middle">Local index</text>
+<text class="sub" x="160" y="334" text-anchor="middle">MCP server</text>
+<line class="ln" x1="160" y1="344" x2="160" y2="372" marker-end="url(#f04n-m)"/>
+<text class="sub" x="172" y="362">relevant pieces</text>
+<rect class="box" x="90" y="372" width="140" height="40" rx="2"/>
+<text class="lbl" x="160" y="397" text-anchor="middle">Short context</text>
+<text class="lbl-mono" x="20" y="440">It starts writing sooner</text>
+</svg>

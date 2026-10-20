@@ -1,0 +1,38 @@
+<svg class="wv sw" viewBox="0 0 764 100" role="img" aria-labelledby="f05w-t f05w-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f05w-t">Start where slow is fine</title>
+<desc id="f05w-d">Three steps in order. One: documentation, user guides and manuals, which can run overnight on old cards. Two: index old code with a local indexer behind MCP, so people can ask the code locally. Three: coding help, once people trust the setup, with hardware sized on real use.</desc>
+<defs><marker id="f05w-m" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="box-accent" x="4" y="12" width="236" height="76" rx="2"/>
+<text class="lbl lbl-strong" x="20" y="40">1  Documentation</text>
+<text class="sub" x="20" y="60">user guides and manuals</text>
+<text class="sub" x="20" y="76">runs overnight on old cards</text>
+<line class="ln" x1="240" y1="50" x2="264" y2="50" marker-end="url(#f05w-m)"/>
+<rect class="box" x="264" y="12" width="236" height="76" rx="2"/>
+<text class="lbl lbl-strong" x="280" y="40">2  Index old code</text>
+<text class="sub" x="280" y="60">local indexer behind MCP</text>
+<text class="sub" x="280" y="76">ask the code locally</text>
+<line class="ln" x1="500" y1="50" x2="524" y2="50" marker-end="url(#f05w-m)"/>
+<rect class="box" x="524" y="12" width="236" height="76" rx="2"/>
+<text class="lbl lbl-strong" x="540" y="40">3  Coding help</text>
+<text class="sub" x="540" y="60">once people trust it</text>
+<text class="sub" x="540" y="76">size hardware on real use</text>
+</svg>
+<svg class="nv sw" viewBox="0 0 320 308" role="img" aria-labelledby="f05n-t f05n-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f05n-t">Start where slow is fine</title>
+<desc id="f05n-d">Three steps in order. One: documentation, user guides and manuals, which can run overnight on old cards. Two: index old code with a local indexer behind MCP, so people can ask the code locally. Three: coding help, once people trust the setup, with hardware sized on real use.</desc>
+<defs><marker id="f05n-m" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="box-accent" x="20" y="8" width="280" height="76" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="36">1  Documentation</text>
+<text class="sub" x="36" y="56">user guides and manuals</text>
+<text class="sub" x="36" y="72">runs overnight on old cards</text>
+<line class="ln" x1="160" y1="84" x2="160" y2="116" marker-end="url(#f05n-m)"/>
+<rect class="box" x="20" y="116" width="280" height="76" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="144">2  Index old code</text>
+<text class="sub" x="36" y="164">local indexer behind MCP</text>
+<text class="sub" x="36" y="180">ask the code locally</text>
+<line class="ln" x1="160" y1="192" x2="160" y2="224" marker-end="url(#f05n-m)"/>
+<rect class="box" x="20" y="224" width="280" height="76" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="252">3  Coding help</text>
+<text class="sub" x="36" y="272">once people trust it</text>
+<text class="sub" x="36" y="288">size hardware on real use</text>
+</svg>

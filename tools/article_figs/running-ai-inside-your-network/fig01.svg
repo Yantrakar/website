@@ -1,0 +1,53 @@
+<svg class="wv sw" viewBox="0 0 760 290" role="img" aria-labelledby="f01w-t f01w-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f01w-t">Two companies, two reasons to run AI inside the network</title>
+<desc id="f01w-d">Company one: the code is the business. Its algorithms must not go to a hosted AI API. Company two: cost and control. Next month's token bill is unknown, and it wants to control what goes into the context and where it goes.</desc>
+<text class="lbl-mono" x="20" y="22">Company one · the code is the business</text>
+<rect class="frame" x="20" y="36" width="340" height="236" rx="4"/>
+<text class="lbl-mono" x="36" y="60">Inside the building</text>
+<rect class="box" x="44" y="104" width="112" height="140" rx="2"/>
+<rect class="box" x="54" y="94" width="112" height="140" rx="2"/>
+<rect class="box" x="64" y="84" width="112" height="140" rx="2"/>
+<text class="lbl" x="120" y="112" text-anchor="middle">Algorithms</text>
+<line class="ln" x1="80" y1="138" x2="160" y2="138" opacity=".35"/>
+<line class="ln" x1="80" y1="156" x2="144" y2="156" opacity=".35"/>
+<line class="ln" x1="80" y1="174" x2="154" y2="174" opacity=".35"/>
+<line class="ln" x1="80" y1="192" x2="136" y2="192" opacity=".35"/>
+<line class="ln" x1="80" y1="210" x2="150" y2="210" opacity=".35"/>
+<text class="lbl-mono acc-raw" x="196" y="144">to a hosted API?</text>
+<line class="ln-accent" x1="190" y1="158" x2="350" y2="158" stroke-dasharray="5 4"/>
+<g><line class="ln-accent" x1="352" y1="150" x2="368" y2="166" stroke-width="2"/><line class="ln-accent" x1="352" y1="166" x2="368" y2="150" stroke-width="2"/></g>
+<text class="lbl-mono" x="400" y="22">Company two · cost and control</text>
+<rect class="box" x="400" y="36" width="340" height="236" rx="4"/>
+<text class="lbl-mono" x="416" y="60">Token bill, next month</text>
+<path class="ln" d="M500 186 A70 70 0 0 1 640 186" stroke-width="6" opacity=".45"/>
+<g class="ln" opacity=".6"><line x1="511" y1="151" x2="520" y2="155"/><line x1="530" y1="128" x2="537" y2="135"/><line x1="557" y1="118" x2="559" y2="127"/><line x1="583" y1="118" x2="581" y2="127"/><line x1="610" y1="128" x2="603" y2="135"/><line x1="629" y1="151" x2="620" y2="155"/></g>
+<text class="lbl acc-raw" x="570" y="186" text-anchor="middle" style="font-size:52px">?</text>
+<text class="sub" x="570" y="226" text-anchor="middle">what goes into the context,</text>
+<text class="sub" x="570" y="244" text-anchor="middle">and where it goes</text>
+</svg>
+<svg class="nv sw" viewBox="0 0 320 540" role="img" aria-labelledby="f01n-t f01n-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f01n-t">Two companies, two reasons to run AI inside the network</title>
+<desc id="f01n-d">Company one: the code is the business. Its algorithms must not go to a hosted AI API. Company two: cost and control. Next month's token bill is unknown, and it wants to control what goes into the context and where it goes.</desc>
+<text class="lbl-mono" x="20" y="18">Company one · the code</text>
+<rect class="frame" x="20" y="30" width="280" height="210" rx="4"/>
+<text class="lbl-mono" x="34" y="54">Inside the building</text>
+<rect class="box" x="36" y="92" width="96" height="124" rx="2"/>
+<rect class="box" x="44" y="84" width="96" height="124" rx="2"/>
+<rect class="box" x="52" y="76" width="96" height="124" rx="2"/>
+<text class="lbl" x="100" y="102" text-anchor="middle">Algorithms</text>
+<line class="ln" x1="64" y1="126" x2="134" y2="126" opacity=".35"/>
+<line class="ln" x1="64" y1="144" x2="120" y2="144" opacity=".35"/>
+<line class="ln" x1="64" y1="162" x2="128" y2="162" opacity=".35"/>
+<line class="ln" x1="64" y1="180" x2="112" y2="180" opacity=".35"/>
+<text class="lbl-mono acc-raw" x="160" y="132">hosted API?</text>
+<line class="ln-accent" x1="158" y1="146" x2="290" y2="146" stroke-dasharray="5 4"/>
+<g><line class="ln-accent" x1="290" y1="139" x2="304" y2="153" stroke-width="2"/><line class="ln-accent" x1="290" y1="153" x2="304" y2="139" stroke-width="2"/></g>
+<text class="lbl-mono" x="20" y="278">Company two · cost, control</text>
+<rect class="box" x="20" y="290" width="280" height="236" rx="4"/>
+<text class="lbl-mono" x="34" y="314">Token bill, next month</text>
+<path class="ln" d="M100 436 A60 60 0 0 1 220 436" stroke-width="6" opacity=".45"/>
+<g class="ln" opacity=".6"><line x1="110" y1="406" x2="118" y2="410"/><line x1="126" y1="386" x2="132" y2="392"/><line x1="149" y1="377" x2="151" y2="385"/><line x1="171" y1="377" x2="169" y2="385"/><line x1="194" y1="386" x2="188" y2="392"/><line x1="210" y1="406" x2="202" y2="410"/></g>
+<text class="lbl acc-raw" x="160" y="436" text-anchor="middle" style="font-size:46px">?</text>
+<text class="sub" x="160" y="476" text-anchor="middle">what goes into the context,</text>
+<text class="sub" x="160" y="494" text-anchor="middle">and where it goes</text>
+</svg>

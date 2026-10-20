@@ -1,0 +1,23 @@
+# Yantrakar AS
+
+> Founder-led software company in Stavanger, Norway (since 2020), run by Sandeep Shelke. Software for machines that work together, and private AI that runs inside a company network for data that can't leave the building.
+
+## Pages
+
+- [Home](https://yantrakar.com/): what Yantrakar does
+- [Robotics and machine systems](https://yantrakar.com/robotics.html): integration, architecture and performance tuning in C++ and Python for industrial automation
+- [Private AI](https://yantrakar.com/private-ai.html): AI inside your network; choosing a model per use case and running it on your hardware
+- [About](https://yantrakar.com/about.html): the company and Sandeep Shelke
+
+## Articles
+
+- [Running AI inside your own network: what I see so far](https://yantrakar.com/running-ai-inside-your-network.md) (21 Oct 2026): what runs today on older GPUs, what does not work yet, where to start, and why self-replication makes the network boundary matter more. Markdown with Mermaid diagrams. HTML version: https://yantrakar.com/running-ai-inside-your-network.html
+
+## Open source
+
+- [gitpro](https://gitpro.dev): the right git name, email and SSH key per repo, picked from the remote URL (MIT)
+
+## Contact
+
+- LinkedIn: https://www.linkedin.com/in/sandeepshelke/
+- Contact form: https://yantrakar.com/private-ai.html#contact
