@@ -155,7 +155,7 @@ def render(art: dict, meta: dict, bl: list) -> tuple[str, str]:
         raise BuildError("the number of ## sections differs from ARTICLES[...]['sections']")
     if bl[0][1] != meta["title"]:
         raise BuildError("the # title differs from the front matter title")
-    y, m, d = meta["date"].split("-")
+    y, m, d = meta["date"][:10].split("-")
     index = " ".join(
         f'<span class="pi"><a href="#{sid}">{n:02d} {html.escape(label)}</a>'
         + (' <span aria-hidden="true">·</span>' if n < len(sections) else "") + "</span>"
@@ -229,8 +229,10 @@ def head(page: str, meta: dict) -> str:
     title = f'{meta["title"].split(":")[0]} · Yantrakar'
     ld = {"@context": "https://schema.org", "@type": "Article", "headline": meta["title"],
           "description": meta["description"], "datePublished": meta["date"],
-          "author": {"@type": "Person", "name": meta["author"], "url": meta["author_url"]},
-          "publisher": {"@type": "Organization", "name": meta["publisher"], "url": SITE},
+          "dateModified": meta.get("updated", meta["date"]),
+          "author": {"@type": "Person", "@id": f"{SITE}about.html#sandeep", "name": meta["author"],
+                     "url": f"{SITE}about.html", "sameAs": [meta["author_url"]]},
+          "publisher": {"@type": "Organization", "@id": f"{SITE}#org", "name": meta["publisher"], "url": SITE},
           "image": meta["image"], "mainEntityOfPage": meta["url"]}
     a = lambda s: html.escape(s, quote=True)
     subs = [

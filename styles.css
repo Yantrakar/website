@@ -135,15 +135,15 @@ main{display:block}
 .wm-mark{display:block;flex:none;width:18px;height:18px;color:var(--accent)}
 .wordmark:hover{color:var(--ink)}
 .nav{min-width:0}
-.nav ul{display:flex;align-items:center;gap:22px;list-style:none;white-space:nowrap;padding:4px 2px}
+.nav ul{display:flex;align-items:center;gap:22px;list-style:none;white-space:nowrap;padding:0 2px}
 .nav a{
-  display:inline-block;padding-block:5px;
+  display:inline-flex;align-items:center;min-height:44px;
   font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;
   color:var(--ink-2);text-decoration:none;
 }
 .nav a:hover{color:var(--ink)}
 .nav a[aria-current="page"]{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px;text-decoration-color:var(--rule-strong)}
-.nav a.btn{display:inline-flex;color:var(--accent-ink);padding-block:0}
+.nav a.btn{color:var(--accent-ink);min-height:0}
 .wordmark[aria-current="page"]{text-decoration:none}
 @media (max-width:719px){
   .bar{flex-wrap:wrap;gap:0;padding-bottom:0}
@@ -164,7 +164,8 @@ main{display:block}
 .btn-primary:hover{border-color:var(--accent);color:var(--accent-ink)}
 .btn-secondary{background:transparent;color:var(--ink-2);border-color:var(--rule-strong)}
 .btn-secondary:hover{color:var(--ink);border-color:var(--muted)}
-.btn-sm{height:30px;padding:0 12px}
+.btn-sm{height:30px;padding:0 12px;position:relative}
+.btn-sm::after{content:"";position:absolute;inset:-7px 0}
 button.btn{font-family:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
 
 /* Hero */
@@ -188,7 +189,8 @@ button.btn{font-family:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Conso
 }
 .eyebrow{color:var(--ink-2)}
 .actions{display:flex;flex-wrap:wrap;gap:.75rem}
-.page-index{display:flex;flex-wrap:wrap;gap:.25rem .75rem}
+.page-index{display:flex;flex-wrap:wrap;gap:0 .75rem;margin-block:-13px}
+.page-index a{display:inline-flex;align-items:center;min-height:44px}
 .pi{white-space:nowrap}
 .page-index a{color:var(--ink-2);text-decoration-color:var(--rule-strong)}
 .page-index a:hover{color:var(--ink)}
@@ -223,7 +225,8 @@ button.btn{font-family:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Conso
 .term:hover{border-color:var(--accent)}
 .term code{font:inherit;user-select:all;white-space:nowrap}
 .prompt{color:var(--accent)}
-.tile-links{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem}
+.tile-links{display:flex;flex-wrap:wrap;gap:0 1.25rem}
+.tile-links a{display:inline-flex;align-items:center;min-height:44px}
 
 /* How I work band (home) */
 .how-band{display:grid;gap:1rem;min-width:0;align-items:start}
@@ -433,7 +436,8 @@ svg .stop{stroke:none;fill:none}
 }
 .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.75rem 2rem}
 .foot > *{min-width:0}
-.foot ul{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;list-style:none}
+.foot ul{display:flex;flex-wrap:wrap;gap:0 1.25rem;list-style:none}
+.foot a{display:inline-flex;align-items:center;min-height:44px}
 .foot p{color:var(--muted)}
 
 @media (prefers-reduced-motion:reduce){
@@ -458,6 +462,8 @@ svg .stop{stroke:none;fill:none}
 .theme-toggle:hover{color:var(--ink);border-color:var(--muted)}
 .theme-toggle:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 .theme-toggle[hidden]{display:none}
+.theme-toggle{position:relative}
+.theme-toggle::after{content:"";position:absolute;inset:-5px}
 .theme-toggle [data-icon]{display:none}
 .theme-toggle[data-current="light"] [data-icon="light"],.theme-toggle[data-current="dark"] [data-icon="dark"],.theme-toggle[data-current="system"] [data-icon="system"]{display:grid}
 @media (prefers-reduced-motion:no-preference){.theme-toggle{transition:border-color .12s,color .12s}}
@@ -467,7 +473,12 @@ svg .stop{stroke:none;fill:none}
   .nav ul{gap:14px}
   .nav li:last-child{position:static;background:none;padding-left:0;margin-left:0}
 }
-@media (max-width:439px){.nav-optional{display:none}}
+.bar-cta{display:none}
+@media (max-width:719px){
+  .bar-cta{display:inline-flex;order:2;margin-left:auto}
+  .bar-cta ~ .theme-toggle{margin-left:10px}
+  .nav-contact{display:none}
+}
 @media print{.theme-toggle{display:none}}
 
 /* Animated figures (site.js adds .anim; without JS none of this applies) */

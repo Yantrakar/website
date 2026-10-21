@@ -84,7 +84,7 @@ Fallbacks: sans `"Helvetica Neue", Helvetica, Arial, sans-serif`; mono `ui-monos
   - Two-column text/figure splits from 1100px.
   - Tiles go two-up from 760px.
   - Every text child of a grid gets `min-width: 0`.
-- **Header:** sticky, 56px high, solid `--bg`, 1px bottom rule. Wordmark on the left, nav in the centre, theme toggle on the right. Under 720px the nav goes on its own row and scrolls sideways inside itself.
+- **Header:** sticky, 56px high, solid `--bg`, 1px bottom rule. Wordmark on the left, nav in the centre, theme toggle on the right. Under 720px the nav goes on its own row, and its Contact button moves to the top bar beside the theme toggle (`.bar-cta`; the nav copy is `.nav-contact`). Robotics, Private AI, Products and About then fit in one row at 360px; on narrower screens the row scrolls sideways inside itself. Every nav, footer, tile and page-index link is at least 44px tall; `.btn-sm` buttons stay 30px and the theme toggle 36px, but both have a 44px hit area.
 - **Hero:** a faint dot grid (`radial-gradient(var(--dot) 1px, transparent 1px)` at 20px), masked to fade out towards the bottom. Used in the hero only.
 - **Phone width:** no sideways page scroll at 360px. Figures get a narrow variant instead of scrolling.
 

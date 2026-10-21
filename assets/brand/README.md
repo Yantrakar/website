@@ -23,7 +23,7 @@ SVG files are the masters. They scale to any size, and all text in them is outli
 | logo-horizontal-light.svg | Mark + YANTRAKAR, for light backgrounds (documents, invoices). |
 | logo-tile-dark.svg / -light.svg | Square tile. Avatars, app icons. |
 | favicon.svg | Browser tab icon (rounded tile). |
-| og-image.svg | Link preview image, 1200 × 630. |
+| og-image.svg | Generic link preview image, 1200 × 630. Each page now has its own, see below. |
 | linkedin-company-cover.svg | LinkedIn company page cover, 1128 × 191. Text kept right of the logo overlay. |
 | linkedin-profile-banner.svg | LinkedIn personal banner, 1584 × 396. Text kept right of the profile photo. |
 
@@ -40,6 +40,10 @@ SVG files are the masters. They scale to any size, and all text in them is outli
 | logo-horizontal-dark/light(.png, @2x) | 48 / 96 high | Email signatures, documents |
 | logo-mark-512.png, logo-mark-on-light-512.png | 512 | Transparent mark |
 | logo-tile-dark-512.png, logo-tile-light-512.png | 512 | Square tiles |
+
+## Page link previews (`../og/`)
+One 1200 × 630 image per page, all in the article preview's layout: wordmark, mono label, three-line headline with the last line dimmed, byline, and a small diagram from that page on the right.
+Sources are in `tools/og/` (shared `og.css`, one HTML file per page); each file names its render command. The article's own image comes from `tools/article_figs/<slug>/og.html`.
 
 ## Rules
 - Keep clear space around the logo of at least the mark's width.

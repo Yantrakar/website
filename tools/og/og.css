@@ -1,0 +1,19 @@
+/* Shared style for the link preview images (1200x630), after the article's
+   tools/article_figs/running-ai-inside-your-network/og.html. */
+html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#0F1215}
+body{background-image:radial-gradient(#20262D 1px,transparent 1px);background-size:24px 24px;background-position:12px 12px}
+.word{font-family:"IBM Plex Mono",monospace;font-size:16px;letter-spacing:.14em;fill:#E8EAEC}
+.mono{font-family:"IBM Plex Mono",monospace;font-size:14px;letter-spacing:.12em;text-transform:uppercase;fill:#8A9199}
+.mono-sm{font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;fill:#B3B8BE}
+.dim{fill:#8A9199}
+.text{font-family:"Schibsted Grotesk",sans-serif;font-size:17px;fill:#B3B8BE}
+.h{font-family:"Schibsted Grotesk",sans-serif;font-size:56px;fill:#E8EAEC}
+.h2{fill:#B3B8BE}
+.by{font-family:"Schibsted Grotesk",sans-serif;font-size:17px;fill:#8A9199}
+.box{fill:#1A1F25;stroke:#3A434D}
+.acc{fill:#2B1C10;stroke:#F59E57}
+.acc-t{fill:#FFB47A}
+.ln{stroke:#8A9199;fill:none}
+.lna{stroke:#F59E57;fill:none}
+.frame{fill:none;stroke:#3A434D;stroke-dasharray:5 5}
+.accent{fill:#F59E57}

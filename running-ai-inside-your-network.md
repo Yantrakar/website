@@ -4,7 +4,8 @@ description: "What I see so far from building private AI on older hardware: one 
 author: Sandeep Shelke
 author_url: https://www.linkedin.com/in/sandeepshelke/
 publisher: Yantrakar AS
-date: 2026-10-21
+date: 2026-10-21T01:27:00+02:00
+updated: 2026-10-21T16:34:00+02:00
 url: https://yantrakar.com/running-ai-inside-your-network.html
 image: https://yantrakar.com/assets/blog/private-ai-network/og.png
 ---
@@ -137,7 +138,7 @@ I expected a few likes when I posted about this on LinkedIn. Instead it drew mor
 
 **Test for leaks yourself.** One person uses Claude and checks for leakage by searching for their own distinctive terms from a clean machine and network. They have found none so far. A search like that can find a leak but cannot prove there is none. I may still borrow it.
 
-**Read the data policy.** After those comments I read GitHub's. [Since 24 April 2026, GitHub Copilot Free, Pro and Pro+ use interaction data for training by default](https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/), unless you opt out. Business and Enterprise plans are excluded. As I read it, on every plan the code still leaves your network, under a policy that can change.
+**Read the data policy.** After those comments I read GitHub's. [Since 24 April 2026, GitHub Copilot Free, Pro, Pro+ and Max use interaction data for training by default](https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies), unless you opt out. Business and Enterprise plans are excluded. As I read it, on every plan the code still leaves your network, under a policy that can change.
 
 Thank you to everyone who took the time to write.
 

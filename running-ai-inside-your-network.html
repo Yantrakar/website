@@ -11,7 +11,9 @@
 <meta property="og:url" content="https://yantrakar.com/running-ai-inside-your-network.html">
 <link rel="canonical" href="https://yantrakar.com/running-ai-inside-your-network.html">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2026-10-21">
+<meta property="og:site_name" content="Yantrakar">
+<meta property="og:locale" content="en_GB">
+<meta property="article:published_time" content="2026-10-21T01:27:00+02:00">
 <meta property="article:author" content="https://www.linkedin.com/in/sandeepshelke/">
 <meta property="og:image" content="https://yantrakar.com/assets/blog/private-ai-network/og.png">
 <meta property="og:image:width" content="1200">
@@ -32,20 +34,21 @@
 .art-list{display:grid;gap:.5rem;padding-left:1.25rem;max-width:62ch}
 </style>
 <link rel="alternate" type="text/markdown" href="https://yantrakar.com/running-ai-inside-your-network.md">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Running AI inside your own network: what I see so far", "description": "What I see so far from building private AI on older hardware: one model per job, what does not work yet, where I would start, and why self-replication makes the network boundary matter more.", "datePublished": "2026-10-21", "author": {"@type": "Person", "name": "Sandeep Shelke", "url": "https://www.linkedin.com/in/sandeepshelke/"}, "publisher": {"@type": "Organization", "name": "Yantrakar AS", "url": "https://yantrakar.com/"}, "image": "https://yantrakar.com/assets/blog/private-ai-network/og.png", "mainEntityOfPage": "https://yantrakar.com/running-ai-inside-your-network.html"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Running AI inside your own network: what I see so far", "description": "What I see so far from building private AI on older hardware: one model per job, what does not work yet, where I would start, and why self-replication makes the network boundary matter more.", "datePublished": "2026-10-21T01:27:00+02:00", "dateModified": "2026-10-21T16:34:00+02:00", "author": {"@type": "Person", "@id": "https://yantrakar.com/about.html#sandeep", "name": "Sandeep Shelke", "url": "https://yantrakar.com/about.html", "sameAs": ["https://www.linkedin.com/in/sandeepshelke/"]}, "publisher": {"@type": "Organization", "@id": "https://yantrakar.com/#org", "name": "Yantrakar AS", "url": "https://yantrakar.com/"}, "image": "https://yantrakar.com/assets/blog/private-ai-network/og.png", "mainEntityOfPage": "https://yantrakar.com/running-ai-inside-your-network.html"}</script>
 </head>
 <body id="top">
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
 <div class="wrap bar">
 <a class="wordmark" href="index.html"><svg class="wm-mark" viewBox="0 0 26 26" width="18" height="18" aria-hidden="true" focusable="false"><path d="M2.00 2.00 L13.00 13.00 L24.00 2.00 M13.00 13.00 L13.00 24.00" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square" stroke-linejoin="miter"/></svg>YANTRAKAR</a>
+<a class="btn btn-primary btn-sm bar-cta" href="#contact">Contact</a>
 <nav class="nav" aria-label="Main">
 <ul>
 <li><a href="robotics.html">Robotics</a></li>
 <li><a href="private-ai.html">Private AI</a></li>
 <li class="nav-optional"><a href="index.html#products">Products</a></li>
 <li><a href="about.html">About</a></li>
-<li><a class="btn btn-primary btn-sm" href="#contact">Contact</a></li>
+<li class="nav-contact"><a class="btn btn-primary btn-sm" href="#contact">Contact</a></li>
 </ul>
 </nav>
 <button class="theme-toggle" type="button" data-current="system" hidden><span data-icon="light"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><span class="sr-only">Theme: Light</span></span><span data-icon="dark"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M20 14.2A8 8 0 0 1 9.8 4 8.2 8.2 0 1 0 20 14.2z"/></svg><span class="sr-only">Theme: Dark</span></span><span data-icon="system"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8.5 20h7M12 16v4"/></svg><span class="sr-only">Theme: System</span></span></button>
@@ -59,7 +62,7 @@
 <p class="eyebrow">FIELD NOTES · PRIVATE AI</p>
 <h1 id="hero-h">Running AI inside your own network: what I see so far</h1>
 <p class="lead">In the last few months, two companies asked me the same question: how do we use AI when our data has to stay inside? These are my notes from building an answer on older hardware, and from the people who commented when I first wrote about it on LinkedIn.</p>
-<p class="mono-line">Sandeep Shelke · Stavanger · <time datetime="2026-10-21">21 Oct 2026</time></p>
+<p class="mono-line">Sandeep Shelke · Stavanger · <time datetime="2026-10-21T01:27:00+02:00">21 Oct 2026</time></p>
 <nav class="page-index" aria-label="On this page"><span class="pi"><a href="#why">01 Why</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#models">02 Models</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#limits">03 Limits</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#start">04 Start</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#comments">05 Comments</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#replication">06 Self-replication</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#consider">07 Steps</a></span></nav>
 </div>
 </div>
@@ -462,7 +465,7 @@
 
 <p class="prose"><strong>Test for leaks yourself.</strong> One person uses Claude and checks for leakage by searching for their own distinctive terms from a clean machine and network. They have found none so far. A search like that can find a leak but cannot prove there is none. I may still borrow it.</p>
 
-<p class="prose"><strong>Read the data policy.</strong> After those comments I read GitHub's. <a href="https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/" rel="noopener">Since 24 April 2026, GitHub Copilot Free, Pro and Pro+ use interaction data for training by default</a>, unless you opt out. Business and Enterprise plans are excluded. As I read it, on every plan the code still leaves your network, under a policy that can change.</p>
+<p class="prose"><strong>Read the data policy.</strong> After those comments I read GitHub's. <a href="https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies" rel="noopener">Since 24 April 2026, GitHub Copilot Free, Pro, Pro+ and Max use interaction data for training by default</a>, unless you opt out. Business and Enterprise plans are excluded. As I read it, on every plan the code still leaves your network, under a policy that can change.</p>
 
 <p class="prose">Thank you to everyone who took the time to write.</p>
 
@@ -827,7 +830,7 @@
 <div class="form-actions">
 <button class="btn btn-primary" type="submit">Send →</button>
 </div>
-<p class="form-note">Your details are used only to reply to this message.</p>
+<p class="form-note">I read every message myself and reply within 24 hours. Your details are used only to reply to this message.</p>
 </form>
 </div>
 </div>
