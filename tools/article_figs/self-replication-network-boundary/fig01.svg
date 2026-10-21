@@ -1,6 +1,6 @@
-<svg class="wv sw" viewBox="0 0 760 300" role="img" aria-labelledby="f06w-t f06w-d" xmlns="http://www.w3.org/2000/svg">
-<title id="f06w-t">Fifteen TV boxes against my older card</title>
-<desc id="f06w-d">From Anthropic's research: 15 Android TV boxes at about 55 dollars each run Gemma4-26B-A4B together at 0.39 tokens per second. My own setup: an older 8 GB card runs the same Gemma4-26B-A4B at about 18 tokens per second when writing the answer, about 45 times faster. Measured differently, shown for scale.</desc>
+<svg class="wv sw" viewBox="0 0 760 300" role="img" aria-labelledby="f01w-t f01w-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f01w-t">Fifteen TV boxes against my older card</title>
+<desc id="f01w-d">From Anthropic's research: 15 Android TV boxes at about 55 dollars each run Gemma4-26B-A4B together at 0.39 tokens per second. My own setup: an older 8 GB card runs the same Gemma4-26B-A4B at about 18 tokens per second when writing the answer, about 45 times faster. Measured differently, shown for scale.</desc>
 <text class="lbl-mono" x="20" y="22">15 Android TV boxes · about $55 each</text>
 <line class="ln" x1="78" y1="58" x2="91" y2="58" opacity=".4"/>
 <line class="ln" x1="49" y1="78" x2="49" y2="94" opacity=".4"/>
@@ -83,9 +83,9 @@
 <text class="lbl-mono" x="420" y="236">Gemma4-26B-A4B, decode</text>
 <text class="lbl-mono" x="420" y="274">About 45 times faster</text>
 </svg>
-<svg class="nv sw" viewBox="0 0 320 480" role="img" aria-labelledby="f06n-t f06n-d" xmlns="http://www.w3.org/2000/svg">
-<title id="f06n-t">Fifteen TV boxes against my older card</title>
-<desc id="f06n-d">From Anthropic's research: 15 Android TV boxes at about 55 dollars each run Gemma4-26B-A4B together at 0.39 tokens per second. My own setup: an older 8 GB card runs the same Gemma4-26B-A4B at about 18 tokens per second when writing the answer, about 45 times faster. Measured differently, shown for scale.</desc>
+<svg class="nv sw" viewBox="0 0 320 480" role="img" aria-labelledby="f01n-t f01n-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f01n-t">Fifteen TV boxes against my older card</title>
+<desc id="f01n-d">From Anthropic's research: 15 Android TV boxes at about 55 dollars each run Gemma4-26B-A4B together at 0.39 tokens per second. My own setup: an older 8 GB card runs the same Gemma4-26B-A4B at about 18 tokens per second when writing the answer, about 45 times faster. Measured differently, shown for scale.</desc>
 <text class="lbl-mono" x="20" y="18">15 TV boxes · about $55 each</text>
 <line class="ln" x1="68" y1="46" x2="78" y2="46" opacity=".4"/>
 <line class="ln" x1="44" y1="62" x2="44" y2="74" opacity=".4"/>

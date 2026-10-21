@@ -41,8 +41,14 @@ ARTICLES = [{
     "eyebrow": "FIELD NOTES · PRIVATE AI",
     "place": "Stavanger",
     # One entry per ## section, in order: (id, label in the page index).
-    "sections": [("why", "Why"), ("models", "Models"), ("limits", "Limits"), ("start", "Start"),
-                 ("comments", "Comments"), ("replication", "Self-replication"), ("consider", "Steps")],
+    "sections": [("short", "In short"), ("why", "Why"), ("models", "Models"), ("limits", "Limits"),
+                 ("start", "Start"), ("comments", "Comments"), ("consider", "Steps")],
+}, {
+    "slug": "self-replication-network-boundary",
+    "eyebrow": "FIELD NOTES · AI SAFETY",
+    "place": "Stavanger",
+    "full_title": True,  # <title> keeps the whole headline, not only the part before the colon
+    "sections": [("measured", "Research"), ("slow", "Speed"), ("chain", "Controls"), ("steps", "Steps")],
 }]
 
 MONTHS = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split()
@@ -225,8 +231,8 @@ def render(art: dict, meta: dict, bl: list) -> tuple[str, str]:
     return "\n\n".join(parts), meta["description"]
 
 
-def head(page: str, meta: dict) -> str:
-    title = f'{meta["title"].split(":")[0]} · Yantrakar'
+def head(page: str, meta: dict, art: dict) -> str:
+    title = f'{meta["title"] if art.get("full_title") else meta["title"].split(":")[0]} · Yantrakar'
     ld = {"@context": "https://schema.org", "@type": "Article", "headline": meta["title"],
           "description": meta["description"], "datePublished": meta["date"],
           "dateModified": meta.get("updated", meta["date"]),
@@ -264,7 +270,7 @@ def build(art: dict) -> tuple[Path, str, str]:
     if page.count(START) != 1 or page.count(END) != 1:
         raise BuildError(f"{PAGE}: needs one {START} and one {END}")
     a, b = page.index(START) + len(START), page.index(END)
-    new = head(page[:a] + "\n" + article + "\n" + page[b:], meta)
+    new = head(page[:a] + "\n" + article + "\n" + page[b:], meta, art)
     return page_path, page, new
 
 

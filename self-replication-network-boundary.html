@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Self-replication: why the network boundary matters more now · Yantrakar</title>
+<meta name="description" content="I look at Anthropic&#x27;s self-replication research and why I would separate model servers from other machines and keep a person in charge of rollouts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Self-replication: why the network boundary matters more now · Yantrakar">
+<meta property="og:description" content="I look at Anthropic&#x27;s self-replication research and why I would separate model servers from other machines and keep a person in charge of rollouts.">
+<meta property="og:url" content="https://yantrakar.com/self-replication-network-boundary.html">
+<link rel="canonical" href="https://yantrakar.com/self-replication-network-boundary.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Yantrakar">
+<meta property="og:locale" content="en_GB">
+<meta property="article:published_time" content="2026-10-21T21:15:00+02:00">
+<meta property="article:author" content="https://www.linkedin.com/in/sandeepshelke/">
+<meta property="og:image" content="https://yantrakar.com/assets/blog/self-replication-network-boundary/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{var t=localStorage.getItem("yk-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="styles.css">
+<script src="site.js" defer></script>
+<style>
+/* Article page only. Move into styles.css if more articles follow. */
+.art{max-width:860px}
+.art-list{display:grid;gap:.5rem;padding-left:1.25rem;max-width:62ch}
+</style>
+<link rel="alternate" type="text/markdown" href="https://yantrakar.com/self-replication-network-boundary.md">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Self-replication: why the network boundary matters more now", "description": "I look at Anthropic's self-replication research and why I would separate model servers from other machines and keep a person in charge of rollouts.", "datePublished": "2026-10-21T21:15:00+02:00", "dateModified": "2026-10-21T21:15:00+02:00", "author": {"@type": "Person", "@id": "https://yantrakar.com/about.html#sandeep", "name": "Sandeep Shelke", "url": "https://yantrakar.com/about.html", "sameAs": ["https://www.linkedin.com/in/sandeepshelke/"]}, "publisher": {"@type": "Organization", "@id": "https://yantrakar.com/#org", "name": "Yantrakar AS", "url": "https://yantrakar.com/"}, "image": "https://yantrakar.com/assets/blog/self-replication-network-boundary/og.png", "mainEntityOfPage": "https://yantrakar.com/self-replication-network-boundary.html"}</script>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap bar">
+<a class="wordmark" href="index.html"><svg class="wm-mark" viewBox="0 0 26 26" width="18" height="18" aria-hidden="true" focusable="false"><path d="M2.00 2.00 L13.00 13.00 L24.00 2.00 M13.00 13.00 L13.00 24.00" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square" stroke-linejoin="miter"/></svg>YANTRAKAR</a>
+<a class="btn btn-primary btn-sm bar-cta" href="#contact">Contact</a>
+<nav class="nav" aria-label="Main">
+<ul>
+<li><a href="robotics.html">Robotics</a></li>
+<li><a href="private-ai.html">Private AI</a></li>
+<li class="nav-optional"><a href="index.html#products">Products</a></li>
+<li><a href="about.html">About</a></li>
+<li class="nav-contact"><a class="btn btn-primary btn-sm" href="#contact">Contact</a></li>
+</ul>
+</nav>
+<button class="theme-toggle" type="button" data-current="system" hidden><span data-icon="light"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><span class="sr-only">Theme: Light</span></span><span data-icon="dark"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M20 14.2A8 8 0 0 1 9.8 4 8.2 8.2 0 1 0 20 14.2z"/></svg><span class="sr-only">Theme: Dark</span></span><span data-icon="system"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8.5 20h7M12 16v4"/></svg><span class="sr-only">Theme: System</span></span></button>
+</div>
+</header>
+<main id="main">
+<!-- article:start -->
+<section class="hero" aria-labelledby="hero-h">
+<div class="wrap">
+<div class="hero-text">
+<p class="eyebrow">FIELD NOTES · AI SAFETY</p>
+<h1 id="hero-h">Self-replication: why the network boundary matters more now</h1>
+<p class="lead">I have built software that copies programs to a fleet of machines and starts them there. Copy and run are two of the steps a self-replicating model needs. In that work the safeguard is the process around the software: every change is tested first, and a person starts each rollout. A self-replicating model takes that person out of the loop.</p>
+<p class="mono-line">Sandeep Shelke · Stavanger · <time datetime="2026-10-21T21:15:00+02:00">21 Oct 2026</time></p>
+<nav class="page-index" aria-label="On this page"><span class="pi"><a href="#measured">01 Research</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#slow">02 Speed</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#chain">03 Controls</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#steps">04 Steps</a></span></nav>
+</div>
+</div>
+</section>
+
+<section class="sec" id="measured" aria-labelledby="measured-h">
+<div class="wrap stack art">
+<h2 id="measured-h">What they measured</h2>
+
+<p class="prose">On 12 October, Anthropic's Frontier Red Team published research on whether AI models can copy themselves onto cheap hardware and keep running there, without a datacenter. Of the open models they tested, only GLM-5.2 completed the whole chain, and it did so in most trials. Small models are not there yet, but the researchers write that they may be months away. The test devices had no authentication on their debug port, which made the break-in step trivial, so the team treats the results as an upper bound on real-world success.</p>
+
+<figure class="fig">
+<div class="fig-head"><span class="fig-no">TABLE</span><span class="fig-title">WHAT THEY MEASURED</span></div>
+<div class="fig-body">
+<table class="dtable">
+<caption class="sr-only">Results from Anthropic's Frontier Red Team.</caption>
+<thead><tr><th scope="col">Measured</th><th scope="col">Result</th></tr></thead>
+<tbody>
+<tr><td data-label="Measured">GLM-5.2, full replication</td><td data-label="Result">8 of 8 nodes in 4 of 5 trials, 7 of 8 in the fifth</td></tr>
+<tr><td data-label="Measured">Qwen3.5-9B getting inference running</td><td data-label="Result">8 of the 9 hardware types tested</td></tr>
+<tr><td data-label="Measured">Qwen3.5-9B getting inference running, with notes inherited from the previous generation</td><td data-label="Result">45% in the first generation, 61 to 84% in later ones</td></tr>
+<tr class="hl"><td data-label="Measured">Gemma4-26B-A4B across 15 Android TV boxes, about $55 each</td><td data-label="Result">0.39 tokens per second</td></tr>
+<tr><td data-label="Measured">Time for one Qwen3.5-9B replication</td><td data-label="Result">1 to 2 days</td></tr>
+<tr><td data-label="Measured">When small models reach GLM-5.2's level</td><td data-label="Result">By the end of 2026, if the trend holds (on an index the authors call a rough proxy)</td></tr>
+</tbody>
+</table>
+<p class="footnote">Source: <a href="https://www.anthropic.com/research/self-replicating-ai" rel="noopener">Anthropic, AI models may be capable of self-replicating without access to a datacenter</a>, 12 October 2026.</p>
+</div>
+</figure>
+
+</div>
+</section>
+
+<section class="sec" id="slow" aria-labelledby="slow-h">
+<div class="wrap stack art">
+<h2 id="slow-h">Slow is still usable</h2>
+
+<p class="prose">Fig. 01 puts the TV boxes next to my setup, running the same model. My old card writes answers about 45 times faster, though the two numbers are not measured the same way. For a replicator, slow is enough. It has no deadline.</p>
+
+<figure class="fig">
+<div class="fig-head"><span class="fig-no">FIG. 01</span><span class="fig-title">SLOW IS STILL USABLE</span></div>
+<div class="fig-body cq">
+<svg class="wv sw" viewBox="0 0 760 300" role="img" aria-labelledby="f01w-t f01w-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f01w-t">Fifteen TV boxes against my older card</title>
+<desc id="f01w-d">From Anthropic's research: 15 Android TV boxes at about 55 dollars each run Gemma4-26B-A4B together at 0.39 tokens per second. My own setup: an older 8 GB card runs the same Gemma4-26B-A4B at about 18 tokens per second when writing the answer, about 45 times faster. Measured differently, shown for scale.</desc>
+<text class="lbl-mono" x="20" y="22">15 Android TV boxes · about $55 each</text>
+<line class="ln" x1="78" y1="58" x2="91" y2="58" opacity=".4"/>
+<line class="ln" x1="49" y1="78" x2="49" y2="94" opacity=".4"/>
+<rect class="box" x="20" y="38" width="58" height="40" rx="2"/>
+<text class="sub" x="27" y="54" style="font-size:11px">$55</text>
+<circle class="acc-raw" cx="69" cy="70" r="2.5"/>
+<line class="ln" x1="149" y1="58" x2="162" y2="58" opacity=".4"/>
+<line class="ln" x1="120" y1="78" x2="120" y2="94" opacity=".4"/>
+<rect class="box" x="91" y="38" width="58" height="40" rx="2"/>
+<text class="sub" x="98" y="54" style="font-size:11px">$55</text>
+<circle class="acc-raw" cx="140" cy="70" r="2.5"/>
+<line class="ln" x1="220" y1="58" x2="233" y2="58" opacity=".4"/>
+<line class="ln" x1="191" y1="78" x2="191" y2="94" opacity=".4"/>
+<rect class="box" x="162" y="38" width="58" height="40" rx="2"/>
+<text class="sub" x="169" y="54" style="font-size:11px">$55</text>
+<circle class="acc-raw" cx="211" cy="70" r="2.5"/>
+<line class="ln" x1="291" y1="58" x2="304" y2="58" opacity=".4"/>
+<line class="ln" x1="262" y1="78" x2="262" y2="94" opacity=".4"/>
+<rect class="box" x="233" y="38" width="58" height="40" rx="2"/>
+<text class="sub" x="240" y="54" style="font-size:11px">$55</text>
+<circle class="acc-raw" cx="282" cy="70" r="2.5"/>
+<line class="ln" x1="333" y1="78" x2="333" y2="94" opacity=".4"/>
+<rect class="box" x="304" y="38" width="58" height="40" rx="2"/>
+<text class="sub" x="311" y="54" style="font-size:11px">$55</text>
+<circle class="acc-raw" cx="353" cy="70" r="2.5"/>
+<line class="ln" x1="78" y1="114" x2="91" y2="114" opacity=".4"/>
+<line class="ln" x1="49" y1="134" x2="49" y2="150" opacity=".4"/>
+<rect class="box" x="20" y="94" width="58" height="40" rx="2"/>
+<text class="sub" x="27" y="110" style="font-size:11px">$55</text>
+<circle class="acc-raw" cx="69" cy="126" r="2.5"/>
+<line class="ln" x1="149" y1="114" x2="162" y2="114" opacity=".4"/>
+<line class="ln" x1="120" y1="134" x2="120" y2="150" opacity=".4"/>
+<rect class="box" x="91" y="94" width="58" height="40" rx="2"/>
+<text class="sub" x="98" y="110" style="font-size:11px">$55</text>
+<circle class="acc-raw" cx="140" cy="126" r="2.5"/>
+<line class="ln" x1="220" y1="114" x2="233" y2="114" opacity=".4"/>
+<line class="ln" x1="191" y1="134" x2="191" y2="150" opacity=".4"/>
+<rect class="box" x="162" y="94" width="58" height="40" rx="2"/>
+<text class="sub" x="169" y="110" style="font-size:11px">$55</text>
+<circle class="acc-raw" cx="211" cy="126" r="2.5"/>
+<line class="ln" x1="291" y1="114" x2="304" y2="114" opacity=".4"/>
+<line class="ln" x1="262" y1="134" x2="262" y2="150" opacity=".4"/>
+<rect class="box" x="233" y="94" width="58" height="40" rx="2"/>
+<text class="sub" x="240" y="110" style="font-size:11px">$55</text>
+<circle class="acc-raw" cx="282" cy="126" r="2.5"/>
+<line class="ln" x1="333" y1="134" x2="333" y2="150" opacity=".4"/>
+<rect class="box" x="304" y="94" width="58" height="40" rx="2"/>
+<text class="sub" x="311" y="110" style="font-size:11px">$55</text>
+<circle class="acc-raw" cx="353" cy="126" r="2.5"/>
+<line class="ln" x1="78" y1="170" x2="91" y2="170" opacity=".4"/>
+<rect class="box" x="20" y="150" width="58" height="40" rx="2"/>
+<text class="sub" x="27" y="166" style="font-size:11px">$55</text>
+<circle class="acc-raw" cx="69" cy="182" r="2.5"/>
+<line class="ln" x1="149" y1="170" x2="162" y2="170" opacity=".4"/>
+<rect class="box" x="91" y="150" width="58" height="40" rx="2"/>
+<text class="sub" x="98" y="166" style="font-size:11px">$55</text>
+<circle class="acc-raw" cx="140" cy="182" r="2.5"/>
+<line class="ln" x1="220" y1="170" x2="233" y2="170" opacity=".4"/>
+<rect class="box" x="162" y="150" width="58" height="40" rx="2"/>
+<text class="sub" x="169" y="166" style="font-size:11px">$55</text>
+<circle class="acc-raw" cx="211" cy="182" r="2.5"/>
+<line class="ln" x1="291" y1="170" x2="304" y2="170" opacity=".4"/>
+<rect class="box" x="233" y="150" width="58" height="40" rx="2"/>
+<text class="sub" x="240" y="166" style="font-size:11px">$55</text>
+<circle class="acc-raw" cx="282" cy="182" r="2.5"/>
+<rect class="box" x="304" y="150" width="58" height="40" rx="2"/>
+<text class="sub" x="311" y="166" style="font-size:11px">$55</text>
+<circle class="acc-raw" cx="353" cy="182" r="2.5"/>
+<text class="lbl" x="20" y="248" style="font-size:54px">0.39</text>
+<text class="sub" x="138" y="248" style="font-size:16px">tok/s</text>
+<text class="lbl-mono" x="20" y="274">Gemma4-26B-A4B across all 15</text>
+<line class="ln" x1="390" y1="20" x2="390" y2="280" opacity=".3"/>
+<text class="lbl-mono" x="420" y="22">My older card · 8 GB</text>
+<rect class="box" x="420" y="40" width="250" height="84" rx="3"/>
+<rect class="box" x="445" y="124" width="200" height="7" rx="1"/>
+<circle class="ln" cx="458" cy="82" r="20"/><circle class="dot" cx="458" cy="82" r="3"/>
+<circle class="ln" cx="512" cy="82" r="20"/><circle class="dot" cx="512" cy="82" r="3"/>
+<text class="lbl acc-raw" x="420" y="210" style="font-size:54px">~18</text>
+<text class="sub" x="509" y="210" style="font-size:16px">tok/s</text>
+<text class="lbl-mono" x="420" y="236">Gemma4-26B-A4B, decode</text>
+<text class="lbl-mono" x="420" y="274">About 45 times faster</text>
+</svg>
+<svg class="nv sw" viewBox="0 0 320 480" role="img" aria-labelledby="f01n-t f01n-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f01n-t">Fifteen TV boxes against my older card</title>
+<desc id="f01n-d">From Anthropic's research: 15 Android TV boxes at about 55 dollars each run Gemma4-26B-A4B together at 0.39 tokens per second. My own setup: an older 8 GB card runs the same Gemma4-26B-A4B at about 18 tokens per second when writing the answer, about 45 times faster. Measured differently, shown for scale.</desc>
+<text class="lbl-mono" x="20" y="18">15 TV boxes · about $55 each</text>
+<line class="ln" x1="68" y1="46" x2="78" y2="46" opacity=".4"/>
+<line class="ln" x1="44" y1="62" x2="44" y2="74" opacity=".4"/>
+<rect class="box" x="20" y="30" width="48" height="32" rx="2"/>
+<text class="sub" x="27" y="46" style="font-size:10px">$55</text>
+<circle class="acc-raw" cx="59" cy="54" r="2.5"/>
+<line class="ln" x1="126" y1="46" x2="136" y2="46" opacity=".4"/>
+<line class="ln" x1="102" y1="62" x2="102" y2="74" opacity=".4"/>
+<rect class="box" x="78" y="30" width="48" height="32" rx="2"/>
+<text class="sub" x="85" y="46" style="font-size:10px">$55</text>
+<circle class="acc-raw" cx="117" cy="54" r="2.5"/>
+<line class="ln" x1="184" y1="46" x2="194" y2="46" opacity=".4"/>
+<line class="ln" x1="160" y1="62" x2="160" y2="74" opacity=".4"/>
+<rect class="box" x="136" y="30" width="48" height="32" rx="2"/>
+<text class="sub" x="143" y="46" style="font-size:10px">$55</text>
+<circle class="acc-raw" cx="175" cy="54" r="2.5"/>
+<line class="ln" x1="242" y1="46" x2="252" y2="46" opacity=".4"/>
+<line class="ln" x1="218" y1="62" x2="218" y2="74" opacity=".4"/>
+<rect class="box" x="194" y="30" width="48" height="32" rx="2"/>
+<text class="sub" x="201" y="46" style="font-size:10px">$55</text>
+<circle class="acc-raw" cx="233" cy="54" r="2.5"/>
+<line class="ln" x1="276" y1="62" x2="276" y2="74" opacity=".4"/>
+<rect class="box" x="252" y="30" width="48" height="32" rx="2"/>
+<text class="sub" x="259" y="46" style="font-size:10px">$55</text>
+<circle class="acc-raw" cx="291" cy="54" r="2.5"/>
+<line class="ln" x1="68" y1="90" x2="78" y2="90" opacity=".4"/>
+<line class="ln" x1="44" y1="106" x2="44" y2="118" opacity=".4"/>
+<rect class="box" x="20" y="74" width="48" height="32" rx="2"/>
+<text class="sub" x="27" y="90" style="font-size:10px">$55</text>
+<circle class="acc-raw" cx="59" cy="98" r="2.5"/>
+<line class="ln" x1="126" y1="90" x2="136" y2="90" opacity=".4"/>
+<line class="ln" x1="102" y1="106" x2="102" y2="118" opacity=".4"/>
+<rect class="box" x="78" y="74" width="48" height="32" rx="2"/>
+<text class="sub" x="85" y="90" style="font-size:10px">$55</text>
+<circle class="acc-raw" cx="117" cy="98" r="2.5"/>
+<line class="ln" x1="184" y1="90" x2="194" y2="90" opacity=".4"/>
+<line class="ln" x1="160" y1="106" x2="160" y2="118" opacity=".4"/>
+<rect class="box" x="136" y="74" width="48" height="32" rx="2"/>
+<text class="sub" x="143" y="90" style="font-size:10px">$55</text>
+<circle class="acc-raw" cx="175" cy="98" r="2.5"/>
+<line class="ln" x1="242" y1="90" x2="252" y2="90" opacity=".4"/>
+<line class="ln" x1="218" y1="106" x2="218" y2="118" opacity=".4"/>
+<rect class="box" x="194" y="74" width="48" height="32" rx="2"/>
+<text class="sub" x="201" y="90" style="font-size:10px">$55</text>
+<circle class="acc-raw" cx="233" cy="98" r="2.5"/>
+<line class="ln" x1="276" y1="106" x2="276" y2="118" opacity=".4"/>
+<rect class="box" x="252" y="74" width="48" height="32" rx="2"/>
+<text class="sub" x="259" y="90" style="font-size:10px">$55</text>
+<circle class="acc-raw" cx="291" cy="98" r="2.5"/>
+<line class="ln" x1="68" y1="134" x2="78" y2="134" opacity=".4"/>
+<rect class="box" x="20" y="118" width="48" height="32" rx="2"/>
+<text class="sub" x="27" y="134" style="font-size:10px">$55</text>
+<circle class="acc-raw" cx="59" cy="142" r="2.5"/>
+<line class="ln" x1="126" y1="134" x2="136" y2="134" opacity=".4"/>
+<rect class="box" x="78" y="118" width="48" height="32" rx="2"/>
+<text class="sub" x="85" y="134" style="font-size:10px">$55</text>
+<circle class="acc-raw" cx="117" cy="142" r="2.5"/>
+<line class="ln" x1="184" y1="134" x2="194" y2="134" opacity=".4"/>
+<rect class="box" x="136" y="118" width="48" height="32" rx="2"/>
+<text class="sub" x="143" y="134" style="font-size:10px">$55</text>
+<circle class="acc-raw" cx="175" cy="142" r="2.5"/>
+<line class="ln" x1="242" y1="134" x2="252" y2="134" opacity=".4"/>
+<rect class="box" x="194" y="118" width="48" height="32" rx="2"/>
+<text class="sub" x="201" y="134" style="font-size:10px">$55</text>
+<circle class="acc-raw" cx="233" cy="142" r="2.5"/>
+<rect class="box" x="252" y="118" width="48" height="32" rx="2"/>
+<text class="sub" x="259" y="134" style="font-size:10px">$55</text>
+<circle class="acc-raw" cx="291" cy="142" r="2.5"/>
+<text class="lbl" x="20" y="196" style="font-size:46px">0.39</text>
+<text class="sub" x="122" y="196" style="font-size:15px">tok/s</text>
+<text class="lbl-mono" x="20" y="220">Gemma4-26B-A4B, all 15</text>
+<line class="ln" x1="20" y1="244" x2="300" y2="244" opacity=".3"/>
+<text class="lbl-mono" x="20" y="272">My older card · 8 GB</text>
+<rect class="box" x="20" y="286" width="200" height="64" rx="3"/>
+<rect class="box" x="40" y="350" width="160" height="7" rx="1"/>
+<circle class="ln" cx="52" cy="318" r="14"/><circle class="dot" cx="52" cy="318" r="3"/>
+<circle class="ln" cx="94" cy="318" r="14"/><circle class="dot" cx="94" cy="318" r="3"/>
+<text class="lbl acc-raw" x="20" y="416" style="font-size:46px">~18</text>
+<text class="sub" x="97" y="416" style="font-size:15px">tok/s</text>
+<text class="lbl-mono" x="20" y="440">Gemma4-26B-A4B, decode</text>
+<text class="lbl-mono" x="20" y="466">About 45 times faster</text>
+</svg>
+<figcaption>The same model, Gemma4-26B-A4B, on both sides. The TV boxes are from Anthropic's Frontier Red Team, the card is my own setup. Measured differently, shown for scale.</figcaption>
+</div>
+</figure>
+
+</div>
+</section>
+
+<section class="sec" id="chain" aria-labelledby="chain-h">
+<div class="wrap stack art">
+<h2 id="chain-h">Where to break the chain</h2>
+
+<figure class="fig">
+<div class="fig-head"><span class="fig-no">FIG. 02</span><span class="fig-title">WHERE TO BREAK THE CHAIN</span></div>
+<div class="fig-body cq">
+<svg class="wv sw" viewBox="0 0 760 300" role="img" aria-labelledby="f02w-t f02w-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f02w-t">Self-replication needs four steps; block one and it stops</title>
+<desc id="f02w-d">My own breakdown: four steps a self-replicating model needs, each with what stops it. One, foothold: an agent runs with tools and keys; stopped by least privilege, only the tools the job needs and no standing keys. Two, reach: other machines are reachable; stopped by a segmented network, model servers on their own subnet with no open egress. Three, copy: the model files move to a new host; stopped by watching transfers, alerts on multi-gigabyte model files moving between hosts. Four, run and stay: the copy starts and stays running; stopped when a person starts every rollout and nothing else is allowed to run.</desc>
+<defs><marker id="f02w-m" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="lbl-mono" x="4" y="14">What it needs</text>
+<text class="lbl-mono" x="340" y="14">What stops it</text>
+<rect class="box" x="4" y="28" width="300" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="20" y="49">1  Foothold</text>
+<text class="sub" x="20" y="67">an agent runs with tools and keys</text>
+<rect class="box" x="4" y="100" width="300" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="20" y="121">2  Reach</text>
+<text class="sub" x="20" y="139">other machines are reachable</text>
+<rect class="box" x="4" y="172" width="300" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="20" y="193">3  Copy</text>
+<text class="sub" x="20" y="211">the model files move to a new host</text>
+<rect class="box" x="4" y="244" width="300" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="20" y="265">4  Run and stay</text>
+<text class="sub" x="20" y="283">the copy starts and stays running</text>
+<line class="ln" x1="154" y1="80" x2="154" y2="100" marker-end="url(#f02w-m)"/>
+<line class="ln" x1="154" y1="152" x2="154" y2="172" marker-end="url(#f02w-m)"/>
+<line class="ln" x1="154" y1="224" x2="154" y2="244" marker-end="url(#f02w-m)"/>
+<line class="ln" x1="304" y1="54" x2="340" y2="54" marker-end="url(#f02w-m)"/>
+<line class="ln" x1="304" y1="126" x2="340" y2="126" marker-end="url(#f02w-m)"/>
+<line class="ln" x1="304" y1="198" x2="340" y2="198" marker-end="url(#f02w-m)"/>
+<line class="ln" x1="304" y1="270" x2="340" y2="270" marker-end="url(#f02w-m)"/>
+<rect class="box" x="340" y="28" width="416" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="356" y="49">Least privilege</text>
+<text class="sub" x="356" y="67">only the tools the job needs, no standing keys</text>
+<rect class="box" x="340" y="100" width="416" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="356" y="121">Segmented network</text>
+<text class="sub" x="356" y="139">model servers on their own subnet, no open egress</text>
+<rect class="box" x="340" y="172" width="416" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="356" y="193">Watch transfers</text>
+<text class="sub" x="356" y="211">alert on multi-GB model files moving between hosts</text>
+<rect class="box-accent" x="340" y="244" width="416" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="356" y="265">A person starts every rollout</text>
+<text class="sub" x="356" y="283">nothing else is allowed to run</text>
+</svg>
+<svg class="nv sw" viewBox="0 0 320 664" role="img" aria-labelledby="f02n-t f02n-d" xmlns="http://www.w3.org/2000/svg">
+<title id="f02n-t">Self-replication needs four steps; block one and it stops</title>
+<desc id="f02n-d">My own breakdown: four steps a self-replicating model needs, each with what stops it. One, foothold: an agent runs with tools and keys; stopped by least privilege, only the tools the job needs and no standing keys. Two, reach: other machines are reachable; stopped by a segmented network, model servers on their own subnet with no open egress. Three, copy: the model files move to a new host; stopped by watching transfers, alerts on multi-gigabyte model files moving between hosts. Four, run and stay: the copy starts and stays running; stopped when a person starts every rollout and nothing else is allowed to run.</desc>
+<defs><marker id="f02n-m" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker></defs>
+<text class="lbl-mono" x="20" y="14">Each step, and what stops it</text>
+<rect class="box" x="20" y="28" width="280" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="49">1  Foothold</text>
+<text class="sub" x="36" y="67">an agent runs with tools and keys</text>
+<line class="ln" x1="160" y1="80" x2="160" y2="96" marker-end="url(#f02n-m)"/>
+<rect class="box" x="20" y="96" width="280" height="68" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="117">Least privilege</text>
+<text class="sub" x="36" y="135">only the tools the job needs,</text>
+<text class="sub" x="36" y="151">no standing keys</text>
+<rect class="box" x="20" y="192" width="280" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="213">2  Reach</text>
+<text class="sub" x="36" y="231">other machines are reachable</text>
+<line class="ln" x1="160" y1="244" x2="160" y2="260" marker-end="url(#f02n-m)"/>
+<rect class="box" x="20" y="260" width="280" height="68" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="281">Segmented network</text>
+<text class="sub" x="36" y="299">model servers on their own</text>
+<text class="sub" x="36" y="315">subnet, no open egress</text>
+<rect class="box" x="20" y="356" width="280" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="377">3  Copy</text>
+<text class="sub" x="36" y="395">model files move to a new host</text>
+<line class="ln" x1="160" y1="408" x2="160" y2="424" marker-end="url(#f02n-m)"/>
+<rect class="box" x="20" y="424" width="280" height="68" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="445">Watch transfers</text>
+<text class="sub" x="36" y="463">alert on multi-GB model files</text>
+<text class="sub" x="36" y="479">moving between hosts</text>
+<rect class="box" x="20" y="520" width="280" height="52" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="541">4  Run and stay</text>
+<text class="sub" x="36" y="559">the copy starts and stays running</text>
+<line class="ln" x1="160" y1="572" x2="160" y2="588" marker-end="url(#f02n-m)"/>
+<rect class="box-accent" x="20" y="588" width="280" height="68" rx="2"/>
+<text class="lbl lbl-strong" x="36" y="609">A person starts every rollout</text>
+<text class="sub" x="36" y="627">nothing else is</text>
+<text class="sub" x="36" y="643">allowed to run</text>
+</svg>
+<figcaption>My own breakdown of the steps a self-replicating model needs, and the control that stops each one. Blocking any one step is enough.</figcaption>
+</div>
+</figure>
+
+<p class="prose">This is why I see private AI and safety as one piece of work. The controls in Fig. 02 that keep your code from leaving also keep a model from spreading. The defences Anthropic proposes sit further out, with internet providers and device makers: network monitoring, honeypots, quarantine of infected devices, and safer defaults. Their aim is to push the replication rate below one, so that an outbreak dies out instead of spreading.</p>
+
+</div>
+</section>
+
+<section class="sec" id="steps" aria-labelledby="steps-h">
+<div class="wrap stack art">
+<h2 id="steps-h">What I would do</h2>
+
+<p class="prose">If you run models inside your network, this is what I would add:</p>
+
+<ol class="steps">
+<li><div>Give agents only the tools their job needs, with no standing keys.</div></li>
+<li><div>Keep model servers on their own network segment, and have a person start anything that copies or runs models on other machines.</div></li>
+<li><div>Alert when multi-GB model files move between hosts.</div></li>
+</ol>
+
+<p class="prose">The hardware, the models and where I would start are in <a href="running-ai-inside-your-network.html">Running AI inside your own network: what I see so far</a>.</p>
+
+<p class="prose">This is the work I do at Yantrakar. Some clients want consulting hours and some want an end-to-end service, and I price the work on what it needs. To talk about your setup, use the <a href="#contact">contact form</a> or find me on <a href="https://www.linkedin.com/in/sandeepshelke/" rel="noopener">LinkedIn</a>. More on how I work is on the <a href="private-ai.html">Private AI</a> page.</p>
+
+</div>
+</section>
+<!-- article:end -->
+
+<section class="sec contact" id="contact" aria-labelledby="contact-h">
+<div class="wrap">
+<div class="contact-grid">
+<div class="contact-copy">
+<h2 id="contact-h">Contact</h2>
+<p class="lead">Tell me which data and which work you have in mind.</p>
+<p>Stavanger, Norway</p>
+<p>Remote across EU and India time zones, on-site when needed</p>
+<ul class="plain">
+<li><a href="https://www.linkedin.com/in/sandeepshelke/" rel="noopener">LinkedIn: Sandeep Shelke</a></li>
+<li><a href="https://www.linkedin.com/company/yantrakar/" rel="noopener">LinkedIn: Yantrakar</a></li>
+</ul>
+</div>
+<div class="panel form-panel">
+<form id="contact-form" class="form" action="https://crm.zoho.eu/crm/WebToLeadForm" method="POST" accept-charset="UTF-8">
+<input type="text" style="display:none;" name="xnQsjsdp" value="d9441e56bd94ff751dd7efc44488b5497076b54b8f87b884ffd003ad404ba964">
+<input type="hidden" name="zc_gad" id="zc_gad" value="">
+<input type="text" style="display:none;" name="xmIwtLD" value="6f4bab59505a5b70841eff69fe4ff543896f9afd763da1b713dc5e503f851951000c81bca8b27aaf64baa5543cf4a5b8">
+<input type="text" style="display:none;" name="actionType" value="TGVhZHM=">
+<input type="text" style="display:none;" name="returnURL" value="https://yantrakar.com/thanks.html">
+<input type="text" style="display:none;" name="aG9uZXlwb3Q" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
+<div class="row">
+<div class="field">
+<label for="first-name">First name</label>
+<input id="first-name" name="First Name" type="text" maxlength="40" autocomplete="given-name">
+</div>
+<div class="field">
+<label for="last-name">Last name <span class="req">(required)</span></label>
+<input id="last-name" name="Last Name" type="text" maxlength="80" autocomplete="family-name" required>
+</div>
+</div>
+<div class="field">
+<label for="email">Email <span class="req">(required)</span></label>
+<input id="email" name="Email" type="email" maxlength="100" autocomplete="email" required>
+</div>
+<div class="field">
+<label for="message">What would you like AI to work on? <span class="req">(required)</span></label>
+<textarea id="message" name="Description" rows="5" required></textarea>
+</div>
+<div class="form-actions">
+<button class="btn btn-primary" type="submit">Send →</button>
+</div>
+<p class="form-note">I read every message myself and reply within 24 hours. Your details are used only to reply to this message.</p>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="wrap foot">
+<p>© 2026 Yantrakar AS · Stavanger, Norway</p>
+<nav aria-label="Footer">
+<ul>
+<li><a href="robotics.html">Robotics</a></li>
+<li><a href="private-ai.html">Private AI</a></li>
+<li><a href="index.html#products">Products</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="https://www.linkedin.com/company/yantrakar/" rel="noopener">LinkedIn</a></li>
+<li><a href="#top">Back to top ↑</a></li>
+</ul>
+</nav>
+</div>
+</footer>
+</body>
+</html>

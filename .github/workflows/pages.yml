@@ -34,7 +34,7 @@ jobs:
         # Publish only what the pages use; notes, tools and config stay out of the site
         run: |
           mkdir _site
-          cp *.html styles.css site.js favicon.svg favicon-32.png apple-touch-icon.png robots.txt sitemap.xml CNAME llms.txt running-ai-inside-your-network.md _site/
+          cp *.html styles.css site.js favicon.svg favicon-32.png apple-touch-icon.png robots.txt sitemap.xml CNAME llms.txt running-ai-inside-your-network.md self-replication-network-boundary.md _site/
           rsync -a --exclude='*.md' assets _site/
       - name: Configure Pages
         uses: actions/configure-pages@v6

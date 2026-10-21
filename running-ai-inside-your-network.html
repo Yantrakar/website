@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Running AI inside your own network · Yantrakar</title>
-<meta name="description" content="What I see so far from building private AI on older hardware: one model per job, what does not work yet, where I would start, and why self-replication makes the network boundary matter more.">
+<meta name="description" content="I share what runs on older cards, where long context falls short, and why I would start private AI with documentation and a local code index.">
 <meta name="color-scheme" content="light dark">
 <meta property="og:title" content="Running AI inside your own network · Yantrakar">
-<meta property="og:description" content="What I see so far from building private AI on older hardware: one model per job, what does not work yet, where I would start, and why self-replication makes the network boundary matter more.">
+<meta property="og:description" content="I share what runs on older cards, where long context falls short, and why I would start private AI with documentation and a local code index.">
 <meta property="og:url" content="https://yantrakar.com/running-ai-inside-your-network.html">
 <link rel="canonical" href="https://yantrakar.com/running-ai-inside-your-network.html">
 <meta property="og:type" content="article">
@@ -34,7 +34,7 @@
 .art-list{display:grid;gap:.5rem;padding-left:1.25rem;max-width:62ch}
 </style>
 <link rel="alternate" type="text/markdown" href="https://yantrakar.com/running-ai-inside-your-network.md">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Running AI inside your own network: what I see so far", "description": "What I see so far from building private AI on older hardware: one model per job, what does not work yet, where I would start, and why self-replication makes the network boundary matter more.", "datePublished": "2026-10-21T01:27:00+02:00", "dateModified": "2026-10-21T16:34:00+02:00", "author": {"@type": "Person", "@id": "https://yantrakar.com/about.html#sandeep", "name": "Sandeep Shelke", "url": "https://yantrakar.com/about.html", "sameAs": ["https://www.linkedin.com/in/sandeepshelke/"]}, "publisher": {"@type": "Organization", "@id": "https://yantrakar.com/#org", "name": "Yantrakar AS", "url": "https://yantrakar.com/"}, "image": "https://yantrakar.com/assets/blog/private-ai-network/og.png", "mainEntityOfPage": "https://yantrakar.com/running-ai-inside-your-network.html"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Running AI inside your own network: what I see so far", "description": "I share what runs on older cards, where long context falls short, and why I would start private AI with documentation and a local code index.", "datePublished": "2026-10-21T01:27:00+02:00", "dateModified": "2026-10-21T21:15:00+02:00", "author": {"@type": "Person", "@id": "https://yantrakar.com/about.html#sandeep", "name": "Sandeep Shelke", "url": "https://yantrakar.com/about.html", "sameAs": ["https://www.linkedin.com/in/sandeepshelke/"]}, "publisher": {"@type": "Organization", "@id": "https://yantrakar.com/#org", "name": "Yantrakar AS", "url": "https://yantrakar.com/"}, "image": "https://yantrakar.com/assets/blog/private-ai-network/og.png", "mainEntityOfPage": "https://yantrakar.com/running-ai-inside-your-network.html"}</script>
 </head>
 <body id="top">
 <a class="skip" href="#main">Skip to content</a>
@@ -63,8 +63,21 @@
 <h1 id="hero-h">Running AI inside your own network: what I see so far</h1>
 <p class="lead">In the last few months, two companies asked me the same question: how do we use AI when our data has to stay inside? These are my notes from building an answer on older hardware, and from the people who commented when I first wrote about it on LinkedIn.</p>
 <p class="mono-line">Sandeep Shelke · Stavanger · <time datetime="2026-10-21T01:27:00+02:00">21 Oct 2026</time></p>
-<nav class="page-index" aria-label="On this page"><span class="pi"><a href="#why">01 Why</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#models">02 Models</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#limits">03 Limits</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#start">04 Start</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#comments">05 Comments</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#replication">06 Self-replication</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#consider">07 Steps</a></span></nav>
+<nav class="page-index" aria-label="On this page"><span class="pi"><a href="#short">01 In short</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#why">02 Why</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#models">03 Models</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#limits">04 Limits</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#start">05 Start</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#comments">06 Comments</a> <span aria-hidden="true">·</span></span> <span class="pi"><a href="#consider">07 Steps</a></span></nav>
 </div>
+</div>
+</section>
+
+<section class="sec" id="short" aria-labelledby="short-h">
+<div class="wrap stack art">
+<h2 id="short-h">In short</h2>
+
+<ul class="art-list">
+<li>I run one model per job on older 6 or 8 GB cards: chat and coding, quick answers, images, search and short video, though video is slow and poor quality.</li>
+<li>Long prompts take minutes on this hardware, whole-codebase work is still too slow, and a team's everyday work needs more memory and newer cards.</li>
+<li>I would start with documentation, then a local index of old code, and size the hardware on real use.</li>
+</ul>
+
 </div>
 </section>
 
@@ -152,7 +165,7 @@
 <li>Qwen3.5-4B, a small model for quick answers where speed matters more than depth.</li>
 <li>The same Qwen3.5-4B with an image encoder added, for images and screenshots.</li>
 <li>Qwen3-Embedding-0.6B, an embedding model for documents and search.</li>
-<li>Wan 2.1, a small text-to-video model, for short clips. The quality is poor, and it is slow: in one test a 2-second clip took close to three minutes.</li>
+<li>Wan 2.1, a small text-to-video model, for short clips. The quality is poor, and it is slow: a 2-second clip takes about 95 seconds on an 8 GB card, and took close to three minutes on a 6 GB card.</li>
 </ul>
 
 <p class="prose">People pick the model for their task in LibreChat, the main front end. Apart from video, the models sit behind one local router on a single address. The router passes each request to the card that serves the model it names. It does not choose a model by itself. The video model is connected as an MCP tool instead, so the model a person has chosen can call it to make a clip. Putting video behind the same address, on its own path, is the next step.</p>
@@ -451,317 +464,23 @@
 
 <p class="prose">I expected a few likes when I posted about this on LinkedIn. Instead it drew more than 20 comments, many from people who work on this every day. They taught me more than the post did.</p>
 
-<p class="prose"><strong>Rent before you buy.</strong> One commenter rents bare-metal GPU clusters by the hour to benchmark before buying anything: the whole test in one script, spin up, run, shut down, for a few dollars an hour on high-end datacenter GPUs. They have had the best luck with spot instances. That is a cheap way to find the size my own cards cannot show me.</p>
+<p class="prose"><strong>Rent before you buy.</strong> One commenter rents bare-metal GPU clusters by the hour, with the best results on spot instances, to benchmark before buying, which could help me find the size my own cards cannot show.</p>
 
-<p class="prose"><strong>Small hardware is further along than I thought.</strong> Another commenter runs a mid-sized open model on a small edge computer and finds that it works reasonably well. In their view, compact AI machines are not a big cost, even though they are slow next to a top-end workstation card.</p>
+<p class="prose"><strong>Small hardware is further along than I thought.</strong> Another commenter finds a mid-sized open model works reasonably well on a small edge computer and sees compact AI machines as affordable, though slower than a top-end workstation card.</p>
 
-<p class="prose"><strong>Build the wrap.</strong> Someone who builds offline-first systems sees the leverage in what surrounds the model: memory that persists, routing each job to the smallest model that can do it, and knowing what a task will cost before it runs. That matches what I found about the harness.</p>
+<p class="prose"><strong>Build the wrap.</strong> An offline-first builder reinforced what I found about the harness: persistent memory, routing each job to the smallest capable model, and knowing the cost before it runs.</p>
 
-<p class="prose"><strong>Memory that is never rewritten.</strong> The same person described their ledger. Every turn is written in. Predictions are hashed before the outcome exists and scored later. Facts have to earn their place. Nothing is overwritten: a changed fact is added as a new entry, and the old one stays, marked as replaced. For long context, they have had the best results with a small fine-tuned model that has a very long window. I want to try that on my long-context problem.</p>
+<p class="prose"><strong>Memory that is never rewritten.</strong> The same person records every turn in a ledger, hashes predictions before outcomes, scores them later and adds changed facts without overwriting old ones. I want to try their approach to long context: a small fine-tuned model with a very long window.</p>
 
-<p class="prose"><strong>Watch the router.</strong> Another commenter raised a point I had missed: if a router picks the model, track how often it sends a task to a model too weak for it. Otherwise retries and corrections eat the savings.</p>
+<p class="prose"><strong>Watch the router.</strong> A commenter pointed out that I should track how often a model-picking router chooses a model too weak for the task, because retries and corrections can eat the savings.</p>
 
-<p class="prose"><strong>Dedicated cloud works for some.</strong> Someone pointed out that you can rent dedicated cloud hardware without exposing your intellectual property. The first company I described wants its code to stay in the building.</p>
+<p class="prose"><strong>Dedicated cloud works for some.</strong> A commenter noted that you can rent dedicated cloud hardware without exposing your intellectual property, though the first company I described wants its code kept in the building.</p>
 
-<p class="prose"><strong>Test for leaks yourself.</strong> One person uses Claude and checks for leakage by searching for their own distinctive terms from a clean machine and network. They have found none so far. A search like that can find a leak but cannot prove there is none. I may still borrow it.</p>
+<p class="prose"><strong>Test for leaks yourself.</strong> One person checks for leaks by searching for their own distinctive terms from a clean machine and network, and has found none so far, though a search like that cannot prove there is none.</p>
 
-<p class="prose"><strong>Read the data policy.</strong> After those comments I read GitHub's. <a href="https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies" rel="noopener">Since 24 April 2026, GitHub Copilot Free, Pro, Pro+ and Max use interaction data for training by default</a>, unless you opt out. Business and Enterprise plans are excluded. As I read it, on every plan the code still leaves your network, under a policy that can change.</p>
+<p class="prose"><strong>Read the data policy.</strong> <a href="https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies" rel="noopener">Since 24 April 2026, GitHub Copilot Free, Pro, Pro+ and Max use interaction data for training by default</a>, unless you opt out; Business and Enterprise are excluded. As I read it, code still leaves your network on every plan, under a policy that can change.</p>
 
 <p class="prose">Thank you to everyone who took the time to write.</p>
-
-</div>
-</section>
-
-<section class="sec" id="replication" aria-labelledby="replication-h">
-<div class="wrap stack art">
-<h2 id="replication-h">Self-replication: why the boundary matters more now</h2>
-
-<p class="prose">On 12 October, Anthropic's Frontier Red Team published research on whether AI models can copy themselves onto cheap hardware and keep running there, without a datacenter. Of the open models they tested, only GLM-5.2 completed the whole chain, and it did so reliably. Small models are not there yet, but the researchers write that they may be months away. The test devices had no authentication on their debug port, which made the break-in step trivial, so the team treats the results as an upper bound on real-world success.</p>
-
-<figure class="fig">
-<div class="fig-head"><span class="fig-no">TABLE</span><span class="fig-title">WHAT THEY MEASURED</span></div>
-<div class="fig-body">
-<table class="dtable">
-<caption class="sr-only">Results from Anthropic's Frontier Red Team.</caption>
-<thead><tr><th scope="col">Measured</th><th scope="col">Result</th></tr></thead>
-<tbody>
-<tr><td data-label="Measured">GLM-5.2, full replication</td><td data-label="Result">8 of 8 nodes in 4 of 5 trials, 7 of 8 in the fifth</td></tr>
-<tr><td data-label="Measured">Qwen3.5-9B getting inference running</td><td data-label="Result">8 of the 9 hardware types tested</td></tr>
-<tr><td data-label="Measured">Qwen3.5-9B getting inference running, with notes inherited from the previous generation</td><td data-label="Result">45% in the first generation, 61 to 84% in later ones</td></tr>
-<tr class="hl"><td data-label="Measured">Gemma4-26B-A4B across 15 Android TV boxes, about $55 each</td><td data-label="Result">0.39 tokens per second</td></tr>
-<tr><td data-label="Measured">Time for one Qwen3.5-9B replication</td><td data-label="Result">1 to 2 days</td></tr>
-<tr><td data-label="Measured">When small models reach GLM-5.2's level</td><td data-label="Result">By the end of 2026, if the trend holds (on an index the authors call a rough proxy)</td></tr>
-</tbody>
-</table>
-<p class="footnote">Source: <a href="https://www.anthropic.com/research/self-replicating-ai" rel="noopener">Anthropic, AI models may be capable of self-replicating without access to a datacenter</a>, 12 October 2026.</p>
-</div>
-</figure>
-
-<p class="prose">Fig. 06 puts the TV boxes next to my setup, running the same model. My old card writes answers about 45 times faster, though the two numbers are not measured the same way. For a replicator, slow is enough. It has no deadline.</p>
-
-<figure class="fig">
-<div class="fig-head"><span class="fig-no">FIG. 06</span><span class="fig-title">SLOW IS STILL USABLE</span></div>
-<div class="fig-body cq">
-<svg class="wv sw" viewBox="0 0 760 300" role="img" aria-labelledby="f06w-t f06w-d" xmlns="http://www.w3.org/2000/svg">
-<title id="f06w-t">Fifteen TV boxes against my older card</title>
-<desc id="f06w-d">From Anthropic's research: 15 Android TV boxes at about 55 dollars each run Gemma4-26B-A4B together at 0.39 tokens per second. My own setup: an older 8 GB card runs the same Gemma4-26B-A4B at about 18 tokens per second when writing the answer, about 45 times faster. Measured differently, shown for scale.</desc>
-<text class="lbl-mono" x="20" y="22">15 Android TV boxes · about $55 each</text>
-<line class="ln" x1="78" y1="58" x2="91" y2="58" opacity=".4"/>
-<line class="ln" x1="49" y1="78" x2="49" y2="94" opacity=".4"/>
-<rect class="box" x="20" y="38" width="58" height="40" rx="2"/>
-<text class="sub" x="27" y="54" style="font-size:11px">$55</text>
-<circle class="acc-raw" cx="69" cy="70" r="2.5"/>
-<line class="ln" x1="149" y1="58" x2="162" y2="58" opacity=".4"/>
-<line class="ln" x1="120" y1="78" x2="120" y2="94" opacity=".4"/>
-<rect class="box" x="91" y="38" width="58" height="40" rx="2"/>
-<text class="sub" x="98" y="54" style="font-size:11px">$55</text>
-<circle class="acc-raw" cx="140" cy="70" r="2.5"/>
-<line class="ln" x1="220" y1="58" x2="233" y2="58" opacity=".4"/>
-<line class="ln" x1="191" y1="78" x2="191" y2="94" opacity=".4"/>
-<rect class="box" x="162" y="38" width="58" height="40" rx="2"/>
-<text class="sub" x="169" y="54" style="font-size:11px">$55</text>
-<circle class="acc-raw" cx="211" cy="70" r="2.5"/>
-<line class="ln" x1="291" y1="58" x2="304" y2="58" opacity=".4"/>
-<line class="ln" x1="262" y1="78" x2="262" y2="94" opacity=".4"/>
-<rect class="box" x="233" y="38" width="58" height="40" rx="2"/>
-<text class="sub" x="240" y="54" style="font-size:11px">$55</text>
-<circle class="acc-raw" cx="282" cy="70" r="2.5"/>
-<line class="ln" x1="333" y1="78" x2="333" y2="94" opacity=".4"/>
-<rect class="box" x="304" y="38" width="58" height="40" rx="2"/>
-<text class="sub" x="311" y="54" style="font-size:11px">$55</text>
-<circle class="acc-raw" cx="353" cy="70" r="2.5"/>
-<line class="ln" x1="78" y1="114" x2="91" y2="114" opacity=".4"/>
-<line class="ln" x1="49" y1="134" x2="49" y2="150" opacity=".4"/>
-<rect class="box" x="20" y="94" width="58" height="40" rx="2"/>
-<text class="sub" x="27" y="110" style="font-size:11px">$55</text>
-<circle class="acc-raw" cx="69" cy="126" r="2.5"/>
-<line class="ln" x1="149" y1="114" x2="162" y2="114" opacity=".4"/>
-<line class="ln" x1="120" y1="134" x2="120" y2="150" opacity=".4"/>
-<rect class="box" x="91" y="94" width="58" height="40" rx="2"/>
-<text class="sub" x="98" y="110" style="font-size:11px">$55</text>
-<circle class="acc-raw" cx="140" cy="126" r="2.5"/>
-<line class="ln" x1="220" y1="114" x2="233" y2="114" opacity=".4"/>
-<line class="ln" x1="191" y1="134" x2="191" y2="150" opacity=".4"/>
-<rect class="box" x="162" y="94" width="58" height="40" rx="2"/>
-<text class="sub" x="169" y="110" style="font-size:11px">$55</text>
-<circle class="acc-raw" cx="211" cy="126" r="2.5"/>
-<line class="ln" x1="291" y1="114" x2="304" y2="114" opacity=".4"/>
-<line class="ln" x1="262" y1="134" x2="262" y2="150" opacity=".4"/>
-<rect class="box" x="233" y="94" width="58" height="40" rx="2"/>
-<text class="sub" x="240" y="110" style="font-size:11px">$55</text>
-<circle class="acc-raw" cx="282" cy="126" r="2.5"/>
-<line class="ln" x1="333" y1="134" x2="333" y2="150" opacity=".4"/>
-<rect class="box" x="304" y="94" width="58" height="40" rx="2"/>
-<text class="sub" x="311" y="110" style="font-size:11px">$55</text>
-<circle class="acc-raw" cx="353" cy="126" r="2.5"/>
-<line class="ln" x1="78" y1="170" x2="91" y2="170" opacity=".4"/>
-<rect class="box" x="20" y="150" width="58" height="40" rx="2"/>
-<text class="sub" x="27" y="166" style="font-size:11px">$55</text>
-<circle class="acc-raw" cx="69" cy="182" r="2.5"/>
-<line class="ln" x1="149" y1="170" x2="162" y2="170" opacity=".4"/>
-<rect class="box" x="91" y="150" width="58" height="40" rx="2"/>
-<text class="sub" x="98" y="166" style="font-size:11px">$55</text>
-<circle class="acc-raw" cx="140" cy="182" r="2.5"/>
-<line class="ln" x1="220" y1="170" x2="233" y2="170" opacity=".4"/>
-<rect class="box" x="162" y="150" width="58" height="40" rx="2"/>
-<text class="sub" x="169" y="166" style="font-size:11px">$55</text>
-<circle class="acc-raw" cx="211" cy="182" r="2.5"/>
-<line class="ln" x1="291" y1="170" x2="304" y2="170" opacity=".4"/>
-<rect class="box" x="233" y="150" width="58" height="40" rx="2"/>
-<text class="sub" x="240" y="166" style="font-size:11px">$55</text>
-<circle class="acc-raw" cx="282" cy="182" r="2.5"/>
-<rect class="box" x="304" y="150" width="58" height="40" rx="2"/>
-<text class="sub" x="311" y="166" style="font-size:11px">$55</text>
-<circle class="acc-raw" cx="353" cy="182" r="2.5"/>
-<text class="lbl" x="20" y="248" style="font-size:54px">0.39</text>
-<text class="sub" x="138" y="248" style="font-size:16px">tok/s</text>
-<text class="lbl-mono" x="20" y="274">Gemma4-26B-A4B across all 15</text>
-<line class="ln" x1="390" y1="20" x2="390" y2="280" opacity=".3"/>
-<text class="lbl-mono" x="420" y="22">My older card · 8 GB</text>
-<rect class="box" x="420" y="40" width="250" height="84" rx="3"/>
-<rect class="box" x="445" y="124" width="200" height="7" rx="1"/>
-<circle class="ln" cx="458" cy="82" r="20"/><circle class="dot" cx="458" cy="82" r="3"/>
-<circle class="ln" cx="512" cy="82" r="20"/><circle class="dot" cx="512" cy="82" r="3"/>
-<text class="lbl acc-raw" x="420" y="210" style="font-size:54px">~18</text>
-<text class="sub" x="509" y="210" style="font-size:16px">tok/s</text>
-<text class="lbl-mono" x="420" y="236">Gemma4-26B-A4B, decode</text>
-<text class="lbl-mono" x="420" y="274">About 45 times faster</text>
-</svg>
-<svg class="nv sw" viewBox="0 0 320 480" role="img" aria-labelledby="f06n-t f06n-d" xmlns="http://www.w3.org/2000/svg">
-<title id="f06n-t">Fifteen TV boxes against my older card</title>
-<desc id="f06n-d">From Anthropic's research: 15 Android TV boxes at about 55 dollars each run Gemma4-26B-A4B together at 0.39 tokens per second. My own setup: an older 8 GB card runs the same Gemma4-26B-A4B at about 18 tokens per second when writing the answer, about 45 times faster. Measured differently, shown for scale.</desc>
-<text class="lbl-mono" x="20" y="18">15 TV boxes · about $55 each</text>
-<line class="ln" x1="68" y1="46" x2="78" y2="46" opacity=".4"/>
-<line class="ln" x1="44" y1="62" x2="44" y2="74" opacity=".4"/>
-<rect class="box" x="20" y="30" width="48" height="32" rx="2"/>
-<text class="sub" x="27" y="46" style="font-size:10px">$55</text>
-<circle class="acc-raw" cx="59" cy="54" r="2.5"/>
-<line class="ln" x1="126" y1="46" x2="136" y2="46" opacity=".4"/>
-<line class="ln" x1="102" y1="62" x2="102" y2="74" opacity=".4"/>
-<rect class="box" x="78" y="30" width="48" height="32" rx="2"/>
-<text class="sub" x="85" y="46" style="font-size:10px">$55</text>
-<circle class="acc-raw" cx="117" cy="54" r="2.5"/>
-<line class="ln" x1="184" y1="46" x2="194" y2="46" opacity=".4"/>
-<line class="ln" x1="160" y1="62" x2="160" y2="74" opacity=".4"/>
-<rect class="box" x="136" y="30" width="48" height="32" rx="2"/>
-<text class="sub" x="143" y="46" style="font-size:10px">$55</text>
-<circle class="acc-raw" cx="175" cy="54" r="2.5"/>
-<line class="ln" x1="242" y1="46" x2="252" y2="46" opacity=".4"/>
-<line class="ln" x1="218" y1="62" x2="218" y2="74" opacity=".4"/>
-<rect class="box" x="194" y="30" width="48" height="32" rx="2"/>
-<text class="sub" x="201" y="46" style="font-size:10px">$55</text>
-<circle class="acc-raw" cx="233" cy="54" r="2.5"/>
-<line class="ln" x1="276" y1="62" x2="276" y2="74" opacity=".4"/>
-<rect class="box" x="252" y="30" width="48" height="32" rx="2"/>
-<text class="sub" x="259" y="46" style="font-size:10px">$55</text>
-<circle class="acc-raw" cx="291" cy="54" r="2.5"/>
-<line class="ln" x1="68" y1="90" x2="78" y2="90" opacity=".4"/>
-<line class="ln" x1="44" y1="106" x2="44" y2="118" opacity=".4"/>
-<rect class="box" x="20" y="74" width="48" height="32" rx="2"/>
-<text class="sub" x="27" y="90" style="font-size:10px">$55</text>
-<circle class="acc-raw" cx="59" cy="98" r="2.5"/>
-<line class="ln" x1="126" y1="90" x2="136" y2="90" opacity=".4"/>
-<line class="ln" x1="102" y1="106" x2="102" y2="118" opacity=".4"/>
-<rect class="box" x="78" y="74" width="48" height="32" rx="2"/>
-<text class="sub" x="85" y="90" style="font-size:10px">$55</text>
-<circle class="acc-raw" cx="117" cy="98" r="2.5"/>
-<line class="ln" x1="184" y1="90" x2="194" y2="90" opacity=".4"/>
-<line class="ln" x1="160" y1="106" x2="160" y2="118" opacity=".4"/>
-<rect class="box" x="136" y="74" width="48" height="32" rx="2"/>
-<text class="sub" x="143" y="90" style="font-size:10px">$55</text>
-<circle class="acc-raw" cx="175" cy="98" r="2.5"/>
-<line class="ln" x1="242" y1="90" x2="252" y2="90" opacity=".4"/>
-<line class="ln" x1="218" y1="106" x2="218" y2="118" opacity=".4"/>
-<rect class="box" x="194" y="74" width="48" height="32" rx="2"/>
-<text class="sub" x="201" y="90" style="font-size:10px">$55</text>
-<circle class="acc-raw" cx="233" cy="98" r="2.5"/>
-<line class="ln" x1="276" y1="106" x2="276" y2="118" opacity=".4"/>
-<rect class="box" x="252" y="74" width="48" height="32" rx="2"/>
-<text class="sub" x="259" y="90" style="font-size:10px">$55</text>
-<circle class="acc-raw" cx="291" cy="98" r="2.5"/>
-<line class="ln" x1="68" y1="134" x2="78" y2="134" opacity=".4"/>
-<rect class="box" x="20" y="118" width="48" height="32" rx="2"/>
-<text class="sub" x="27" y="134" style="font-size:10px">$55</text>
-<circle class="acc-raw" cx="59" cy="142" r="2.5"/>
-<line class="ln" x1="126" y1="134" x2="136" y2="134" opacity=".4"/>
-<rect class="box" x="78" y="118" width="48" height="32" rx="2"/>
-<text class="sub" x="85" y="134" style="font-size:10px">$55</text>
-<circle class="acc-raw" cx="117" cy="142" r="2.5"/>
-<line class="ln" x1="184" y1="134" x2="194" y2="134" opacity=".4"/>
-<rect class="box" x="136" y="118" width="48" height="32" rx="2"/>
-<text class="sub" x="143" y="134" style="font-size:10px">$55</text>
-<circle class="acc-raw" cx="175" cy="142" r="2.5"/>
-<line class="ln" x1="242" y1="134" x2="252" y2="134" opacity=".4"/>
-<rect class="box" x="194" y="118" width="48" height="32" rx="2"/>
-<text class="sub" x="201" y="134" style="font-size:10px">$55</text>
-<circle class="acc-raw" cx="233" cy="142" r="2.5"/>
-<rect class="box" x="252" y="118" width="48" height="32" rx="2"/>
-<text class="sub" x="259" y="134" style="font-size:10px">$55</text>
-<circle class="acc-raw" cx="291" cy="142" r="2.5"/>
-<text class="lbl" x="20" y="196" style="font-size:46px">0.39</text>
-<text class="sub" x="122" y="196" style="font-size:15px">tok/s</text>
-<text class="lbl-mono" x="20" y="220">Gemma4-26B-A4B, all 15</text>
-<line class="ln" x1="20" y1="244" x2="300" y2="244" opacity=".3"/>
-<text class="lbl-mono" x="20" y="272">My older card · 8 GB</text>
-<rect class="box" x="20" y="286" width="200" height="64" rx="3"/>
-<rect class="box" x="40" y="350" width="160" height="7" rx="1"/>
-<circle class="ln" cx="52" cy="318" r="14"/><circle class="dot" cx="52" cy="318" r="3"/>
-<circle class="ln" cx="94" cy="318" r="14"/><circle class="dot" cx="94" cy="318" r="3"/>
-<text class="lbl acc-raw" x="20" y="416" style="font-size:46px">~18</text>
-<text class="sub" x="97" y="416" style="font-size:15px">tok/s</text>
-<text class="lbl-mono" x="20" y="440">Gemma4-26B-A4B, decode</text>
-<text class="lbl-mono" x="20" y="466">About 45 times faster</text>
-</svg>
-<figcaption>The same model, Gemma4-26B-A4B, on both sides. The TV boxes are from Anthropic's Frontier Red Team, the card is my own setup. Measured differently, shown for scale.</figcaption>
-</div>
-</figure>
-
-<p class="prose">I have built software that copies programs to a fleet of machines and starts them there. Copy and run are two of the steps a self-replicating model needs. In that work the safeguard is the process around the software: every change is tested first, and a person starts each rollout. A self-replicating model takes that person out of the loop.</p>
-
-<figure class="fig">
-<div class="fig-head"><span class="fig-no">FIG. 07</span><span class="fig-title">WHERE TO BREAK THE CHAIN</span></div>
-<div class="fig-body cq">
-<svg class="wv sw" viewBox="0 0 760 300" role="img" aria-labelledby="f07w-t f07w-d" xmlns="http://www.w3.org/2000/svg">
-<title id="f07w-t">Self-replication needs four steps; block one and it stops</title>
-<desc id="f07w-d">My own breakdown: four steps a self-replicating model needs, each with what stops it. One, foothold: an agent runs with tools and keys; stopped by least privilege, only the tools the job needs and no standing keys. Two, reach: other machines are reachable; stopped by a segmented network, model servers on their own subnet with no open egress. Three, copy: the model files move to a new host; stopped by watching transfers, alerts on multi-gigabyte model files moving between hosts. Four, run and stay: the copy starts and stays running; stopped when a person starts every rollout and nothing else is allowed to run.</desc>
-<defs><marker id="f07w-m" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker></defs>
-<text class="lbl-mono" x="4" y="14">What it needs</text>
-<text class="lbl-mono" x="340" y="14">What stops it</text>
-<rect class="box" x="4" y="28" width="300" height="52" rx="2"/>
-<text class="lbl lbl-strong" x="20" y="49">1  Foothold</text>
-<text class="sub" x="20" y="67">an agent runs with tools and keys</text>
-<rect class="box" x="4" y="100" width="300" height="52" rx="2"/>
-<text class="lbl lbl-strong" x="20" y="121">2  Reach</text>
-<text class="sub" x="20" y="139">other machines are reachable</text>
-<rect class="box" x="4" y="172" width="300" height="52" rx="2"/>
-<text class="lbl lbl-strong" x="20" y="193">3  Copy</text>
-<text class="sub" x="20" y="211">the model files move to a new host</text>
-<rect class="box" x="4" y="244" width="300" height="52" rx="2"/>
-<text class="lbl lbl-strong" x="20" y="265">4  Run and stay</text>
-<text class="sub" x="20" y="283">the copy starts and stays running</text>
-<line class="ln" x1="154" y1="80" x2="154" y2="100" marker-end="url(#f07w-m)"/>
-<line class="ln" x1="154" y1="152" x2="154" y2="172" marker-end="url(#f07w-m)"/>
-<line class="ln" x1="154" y1="224" x2="154" y2="244" marker-end="url(#f07w-m)"/>
-<line class="ln" x1="304" y1="54" x2="340" y2="54" marker-end="url(#f07w-m)"/>
-<line class="ln" x1="304" y1="126" x2="340" y2="126" marker-end="url(#f07w-m)"/>
-<line class="ln" x1="304" y1="198" x2="340" y2="198" marker-end="url(#f07w-m)"/>
-<line class="ln" x1="304" y1="270" x2="340" y2="270" marker-end="url(#f07w-m)"/>
-<rect class="box" x="340" y="28" width="416" height="52" rx="2"/>
-<text class="lbl lbl-strong" x="356" y="49">Least privilege</text>
-<text class="sub" x="356" y="67">only the tools the job needs, no standing keys</text>
-<rect class="box" x="340" y="100" width="416" height="52" rx="2"/>
-<text class="lbl lbl-strong" x="356" y="121">Segmented network</text>
-<text class="sub" x="356" y="139">model servers on their own subnet, no open egress</text>
-<rect class="box" x="340" y="172" width="416" height="52" rx="2"/>
-<text class="lbl lbl-strong" x="356" y="193">Watch transfers</text>
-<text class="sub" x="356" y="211">alert on multi-GB model files moving between hosts</text>
-<rect class="box-accent" x="340" y="244" width="416" height="52" rx="2"/>
-<text class="lbl lbl-strong" x="356" y="265">A person starts every rollout</text>
-<text class="sub" x="356" y="283">nothing else is allowed to run</text>
-</svg>
-<svg class="nv sw" viewBox="0 0 320 664" role="img" aria-labelledby="f07n-t f07n-d" xmlns="http://www.w3.org/2000/svg">
-<title id="f07n-t">Self-replication needs four steps; block one and it stops</title>
-<desc id="f07n-d">My own breakdown: four steps a self-replicating model needs, each with what stops it. One, foothold: an agent runs with tools and keys; stopped by least privilege, only the tools the job needs and no standing keys. Two, reach: other machines are reachable; stopped by a segmented network, model servers on their own subnet with no open egress. Three, copy: the model files move to a new host; stopped by watching transfers, alerts on multi-gigabyte model files moving between hosts. Four, run and stay: the copy starts and stays running; stopped when a person starts every rollout and nothing else is allowed to run.</desc>
-<defs><marker id="f07n-m" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker></defs>
-<text class="lbl-mono" x="20" y="14">Each step, and what stops it</text>
-<rect class="box" x="20" y="28" width="280" height="52" rx="2"/>
-<text class="lbl lbl-strong" x="36" y="49">1  Foothold</text>
-<text class="sub" x="36" y="67">an agent runs with tools and keys</text>
-<line class="ln" x1="160" y1="80" x2="160" y2="96" marker-end="url(#f07n-m)"/>
-<rect class="box" x="20" y="96" width="280" height="68" rx="2"/>
-<text class="lbl lbl-strong" x="36" y="117">Least privilege</text>
-<text class="sub" x="36" y="135">only the tools the job needs,</text>
-<text class="sub" x="36" y="151">no standing keys</text>
-<rect class="box" x="20" y="192" width="280" height="52" rx="2"/>
-<text class="lbl lbl-strong" x="36" y="213">2  Reach</text>
-<text class="sub" x="36" y="231">other machines are reachable</text>
-<line class="ln" x1="160" y1="244" x2="160" y2="260" marker-end="url(#f07n-m)"/>
-<rect class="box" x="20" y="260" width="280" height="68" rx="2"/>
-<text class="lbl lbl-strong" x="36" y="281">Segmented network</text>
-<text class="sub" x="36" y="299">model servers on their own</text>
-<text class="sub" x="36" y="315">subnet, no open egress</text>
-<rect class="box" x="20" y="356" width="280" height="52" rx="2"/>
-<text class="lbl lbl-strong" x="36" y="377">3  Copy</text>
-<text class="sub" x="36" y="395">model files move to a new host</text>
-<line class="ln" x1="160" y1="408" x2="160" y2="424" marker-end="url(#f07n-m)"/>
-<rect class="box" x="20" y="424" width="280" height="68" rx="2"/>
-<text class="lbl lbl-strong" x="36" y="445">Watch transfers</text>
-<text class="sub" x="36" y="463">alert on multi-GB model files</text>
-<text class="sub" x="36" y="479">moving between hosts</text>
-<rect class="box" x="20" y="520" width="280" height="52" rx="2"/>
-<text class="lbl lbl-strong" x="36" y="541">4  Run and stay</text>
-<text class="sub" x="36" y="559">the copy starts and stays running</text>
-<line class="ln" x1="160" y1="572" x2="160" y2="588" marker-end="url(#f07n-m)"/>
-<rect class="box-accent" x="20" y="588" width="280" height="68" rx="2"/>
-<text class="lbl lbl-strong" x="36" y="609">A person starts every rollout</text>
-<text class="sub" x="36" y="627">nothing else is</text>
-<text class="sub" x="36" y="643">allowed to run</text>
-</svg>
-<figcaption>My own breakdown of the steps a self-replicating model needs, and the control that stops each one. Blocking any one step is enough.</figcaption>
-</div>
-</figure>
-
-<p class="prose">This is why I see private AI and safety as one piece of work. The controls in Fig. 07 that keep your code from leaving also keep a model from spreading. The defences Anthropic proposes sit further out, with internet providers and device makers: network monitoring, honeypots, quarantine of infected devices, and safer defaults. Their aim is to push the replication rate below one, so that an outbreak dies out instead of spreading.</p>
 
 </div>
 </section>
@@ -779,10 +498,11 @@
 <li><div>Give each job the smallest model that does it well, with one front end for all of them.</div></li>
 <li><div>Next, index your own code and documents locally, so people can ask questions about them.</div></li>
 <li><div>Add coding help once people trust the setup, and size the hardware on real use.</div></li>
-<li><div>Keep model servers on their own network segment, and have a person start anything that copies or runs models on other machines.</div></li>
 </ol>
 
 <p class="prose">This is the work I do at Yantrakar. Some clients want consulting hours and some want an end-to-end service, and I price the work on what it needs. To talk about your setup, use the <a href="#contact">contact form</a> or find me on <a href="https://www.linkedin.com/in/sandeepshelke/" rel="noopener">LinkedIn</a>. More on how I work is on the <a href="private-ai.html">Private AI</a> page.</p>
+
+<p class="prose">Running models inside also raises a safety question. I wrote about it here: <a href="self-replication-network-boundary.html">Self-replication: why the network boundary matters more now</a>.</p>
 
 </div>
 </section>

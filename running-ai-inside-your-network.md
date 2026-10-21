@@ -1,11 +1,11 @@
 ---
 title: "Running AI inside your own network: what I see so far"
-description: "What I see so far from building private AI on older hardware: one model per job, what does not work yet, where I would start, and why self-replication makes the network boundary matter more."
+description: "I share what runs on older cards, where long context falls short, and why I would start private AI with documentation and a local code index."
 author: Sandeep Shelke
 author_url: https://www.linkedin.com/in/sandeepshelke/
 publisher: Yantrakar AS
 date: 2026-10-21T01:27:00+02:00
-updated: 2026-10-21T16:34:00+02:00
+updated: 2026-10-21T21:15:00+02:00
 url: https://yantrakar.com/running-ai-inside-your-network.html
 image: https://yantrakar.com/assets/blog/private-ai-network/og.png
 ---
@@ -13,6 +13,12 @@ image: https://yantrakar.com/assets/blog/private-ai-network/og.png
 # Running AI inside your own network: what I see so far
 
 In the last few months, two companies asked me the same question: how do we use AI when our data has to stay inside? These are my notes from building an answer on older hardware, and from the people who commented when I first wrote about it on LinkedIn.
+
+## In short
+
+- I run one model per job on older 6 or 8 GB cards: chat and coding, quick answers, images, search and short video, though video is slow and poor quality.
+- Long prompts take minutes on this hardware, whole-codebase work is still too slow, and a team's everyday work needs more memory and newer cards.
+- I would start with documentation, then a local index of old code, and size the hardware on real use.
 
 ## Why companies want it
 
@@ -47,7 +53,7 @@ I run one model per job, each on a card of its own. Five run side by side:
 - Qwen3.5-4B, a small model for quick answers where speed matters more than depth.
 - The same Qwen3.5-4B with an image encoder added, for images and screenshots.
 - Qwen3-Embedding-0.6B, an embedding model for documents and search.
-- Wan 2.1, a small text-to-video model, for short clips. The quality is poor, and it is slow: in one test a 2-second clip took close to three minutes.
+- Wan 2.1, a small text-to-video model, for short clips. The quality is poor, and it is slow: a 2-second clip takes about 95 seconds on an 8 GB card, and took close to three minutes on a 6 GB card.
 
 People pick the model for their task in LibreChat, the main front end. Apart from video, the models sit behind one local router on a single address. The router passes each request to the card that serves the model it names. It does not choose a model by itself. The video model is connected as an MCP tool instead, so the model a person has chosen can call it to make a clip. Putting video behind the same address, on its own path, is the next step.
 
@@ -124,67 +130,23 @@ flowchart LR
 
 I expected a few likes when I posted about this on LinkedIn. Instead it drew more than 20 comments, many from people who work on this every day. They taught me more than the post did.
 
-**Rent before you buy.** One commenter rents bare-metal GPU clusters by the hour to benchmark before buying anything: the whole test in one script, spin up, run, shut down, for a few dollars an hour on high-end datacenter GPUs. They have had the best luck with spot instances. That is a cheap way to find the size my own cards cannot show me.
+**Rent before you buy.** One commenter rents bare-metal GPU clusters by the hour, with the best results on spot instances, to benchmark before buying, which could help me find the size my own cards cannot show.
 
-**Small hardware is further along than I thought.** Another commenter runs a mid-sized open model on a small edge computer and finds that it works reasonably well. In their view, compact AI machines are not a big cost, even though they are slow next to a top-end workstation card.
+**Small hardware is further along than I thought.** Another commenter finds a mid-sized open model works reasonably well on a small edge computer and sees compact AI machines as affordable, though slower than a top-end workstation card.
 
-**Build the wrap.** Someone who builds offline-first systems sees the leverage in what surrounds the model: memory that persists, routing each job to the smallest model that can do it, and knowing what a task will cost before it runs. That matches what I found about the harness.
+**Build the wrap.** An offline-first builder reinforced what I found about the harness: persistent memory, routing each job to the smallest capable model, and knowing the cost before it runs.
 
-**Memory that is never rewritten.** The same person described their ledger. Every turn is written in. Predictions are hashed before the outcome exists and scored later. Facts have to earn their place. Nothing is overwritten: a changed fact is added as a new entry, and the old one stays, marked as replaced. For long context, they have had the best results with a small fine-tuned model that has a very long window. I want to try that on my long-context problem.
+**Memory that is never rewritten.** The same person records every turn in a ledger, hashes predictions before outcomes, scores them later and adds changed facts without overwriting old ones. I want to try their approach to long context: a small fine-tuned model with a very long window.
 
-**Watch the router.** Another commenter raised a point I had missed: if a router picks the model, track how often it sends a task to a model too weak for it. Otherwise retries and corrections eat the savings.
+**Watch the router.** A commenter pointed out that I should track how often a model-picking router chooses a model too weak for the task, because retries and corrections can eat the savings.
 
-**Dedicated cloud works for some.** Someone pointed out that you can rent dedicated cloud hardware without exposing your intellectual property. The first company I described wants its code to stay in the building.
+**Dedicated cloud works for some.** A commenter noted that you can rent dedicated cloud hardware without exposing your intellectual property, though the first company I described wants its code kept in the building.
 
-**Test for leaks yourself.** One person uses Claude and checks for leakage by searching for their own distinctive terms from a clean machine and network. They have found none so far. A search like that can find a leak but cannot prove there is none. I may still borrow it.
+**Test for leaks yourself.** One person checks for leaks by searching for their own distinctive terms from a clean machine and network, and has found none so far, though a search like that cannot prove there is none.
 
-**Read the data policy.** After those comments I read GitHub's. [Since 24 April 2026, GitHub Copilot Free, Pro, Pro+ and Max use interaction data for training by default](https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies), unless you opt out. Business and Enterprise plans are excluded. As I read it, on every plan the code still leaves your network, under a policy that can change.
+**Read the data policy.** [Since 24 April 2026, GitHub Copilot Free, Pro, Pro+ and Max use interaction data for training by default](https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies), unless you opt out; Business and Enterprise are excluded. As I read it, code still leaves your network on every plan, under a policy that can change.
 
 Thank you to everyone who took the time to write.
-
-## Self-replication: why the boundary matters more now
-
-On 12 October, Anthropic's Frontier Red Team published research on whether AI models can copy themselves onto cheap hardware and keep running there, without a datacenter. Of the open models they tested, only GLM-5.2 completed the whole chain, and it did so reliably. Small models are not there yet, but the researchers write that they may be months away. The test devices had no authentication on their debug port, which made the break-in step trivial, so the team treats the results as an upper bound on real-world success.
-
-**Table · What they measured.** Results from Anthropic's Frontier Red Team.
-
-| Measured | Result |
-| --- | --- |
-| GLM-5.2, full replication | 8 of 8 nodes in 4 of 5 trials, 7 of 8 in the fifth |
-| Qwen3.5-9B getting inference running | 8 of the 9 hardware types tested |
-| Qwen3.5-9B getting inference running, with notes inherited from the previous generation | 45% in the first generation, 61 to 84% in later ones |
-| **Gemma4-26B-A4B across 15 Android TV boxes, about $55 each** | **0.39 tokens per second** |
-| Time for one Qwen3.5-9B replication | 1 to 2 days |
-| When small models reach GLM-5.2's level | By the end of 2026, if the trend holds (on an index the authors call a rough proxy) |
-
-Source: [Anthropic, AI models may be capable of self-replicating without access to a datacenter](https://www.anthropic.com/research/self-replicating-ai), 12 October 2026.
-
-Fig. 06 puts the TV boxes next to my setup, running the same model. My old card writes answers about 45 times faster, though the two numbers are not measured the same way. For a replicator, slow is enough. It has no deadline.
-
-**Fig. 06 · Slow is still usable.** The same model, Gemma4-26B-A4B, on both sides. The TV boxes are from Anthropic's Frontier Red Team, the card is my own setup. Measured differently, shown for scale.
-
-```mermaid
-flowchart LR
-  g["Anthropic's test: 15 Android TV boxes, about $55 each<br/>Gemma4-26B-A4B across all 15: 0.39 tokens/s"]
-  q["My older 8 GB card<br/>Gemma4-26B-A4B, decode: about 18 tokens/s<br/>about 45 times faster"]
-```
-
-I have built software that copies programs to a fleet of machines and starts them there. Copy and run are two of the steps a self-replicating model needs. In that work the safeguard is the process around the software: every change is tested first, and a person starts each rollout. A self-replicating model takes that person out of the loop.
-
-**Fig. 07 · Where to break the chain.** My own breakdown of the steps a self-replicating model needs, and the control that stops each one. Blocking any one step is enough.
-
-```mermaid
-flowchart TD
-  f["Step 1: Foothold<br/>an agent runs with tools and keys"] --> r["Step 2: Reach<br/>other machines are reachable"]
-  r --> c["Step 3: Copy<br/>the model files move to a new host"]
-  c --> s["Step 4: Run and stay<br/>the copy starts and stays running"]
-  lp["Least privilege<br/>only the tools the job needs, no standing keys"] -- stops --x f
-  seg["Segmented network<br/>model servers on their own subnet, no open egress"] -- stops --x r
-  wt["Watch transfers<br/>alert on multi-GB model files moving between hosts"] -- stops --x c
-  pr["A person starts every rollout<br/>nothing else is allowed to run"] -- stops --x s
-```
-
-This is why I see private AI and safety as one piece of work. The controls in Fig. 07 that keep your code from leaving also keep a model from spreading. The defences Anthropic proposes sit further out, with internet providers and device makers: network monitoring, honeypots, quarantine of infected devices, and safer defaults. Their aim is to push the replication rate below one, so that an outbreak dies out instead of spreading.
 
 ## If you are considering it
 
@@ -196,6 +158,7 @@ If your company wants AI and your data has to stay inside, this is what I would 
 4. Give each job the smallest model that does it well, with one front end for all of them.
 5. Next, index your own code and documents locally, so people can ask questions about them.
 6. Add coding help once people trust the setup, and size the hardware on real use.
-7. Keep model servers on their own network segment, and have a person start anything that copies or runs models on other machines.
 
 This is the work I do at Yantrakar. Some clients want consulting hours and some want an end-to-end service, and I price the work on what it needs. To talk about your setup, use the [contact form](https://yantrakar.com/running-ai-inside-your-network.html#contact) or find me on [LinkedIn](https://www.linkedin.com/in/sandeepshelke/). More on how I work is on the [Private AI](https://yantrakar.com/private-ai.html) page.
+
+Running models inside also raises a safety question. I wrote about it here: [Self-replication: why the network boundary matters more now](https://yantrakar.com/self-replication-network-boundary.html).

@@ -11,7 +11,8 @@
 
 ## Articles
 
-- [Running AI inside your own network: what I see so far](https://yantrakar.com/running-ai-inside-your-network.md) (21 Oct 2026): what runs today on older GPUs, what does not work yet, where to start, and why self-replication makes the network boundary matter more. Markdown with Mermaid diagrams. HTML version: https://yantrakar.com/running-ai-inside-your-network.html
+- [Running AI inside your own network: what I see so far](https://yantrakar.com/running-ai-inside-your-network.md) (21 Oct 2026): what I run on older GPUs, what does not work yet, and where I would start. Markdown with Mermaid diagrams. HTML version: https://yantrakar.com/running-ai-inside-your-network.html
+- [Self-replication: why the network boundary matters more now](https://yantrakar.com/self-replication-network-boundary.md) (21 Oct 2026): what I take from Anthropic's self-replication research and where I would break the chain. Markdown with Mermaid diagrams. HTML version: https://yantrakar.com/self-replication-network-boundary.html
 
 ## Open source
 
