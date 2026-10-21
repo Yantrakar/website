@@ -5,7 +5,7 @@ author: Sandeep Shelke
 author_url: https://www.linkedin.com/in/sandeepshelke/
 publisher: Yantrakar AS
 date: 2026-10-21T01:27:00+02:00
-updated: 2026-10-21T21:15:00+02:00
+updated: 2026-10-21T21:18:00+02:00
 url: https://yantrakar.com/running-ai-inside-your-network.html
 image: https://yantrakar.com/assets/blog/private-ai-network/og.png
 ---
@@ -72,7 +72,7 @@ flowchart LR
   end
 ```
 
-None of this runs on new hardware. The cards are Pascal and Turing generation, with 6 or 8 GB of memory each. Qwen3.6-35B runs on a single 8 GB card. Only about 3B of its parameters are active for each token, so its expert layers can sit in the machine's main memory while the card holds the rest. With 8,000 tokens in its context it reads at about 740 tokens per second and writes its answer at about 24. At 100,000 tokens it still reads at about 560. Both rates fall as the context fills up. A year ago I would not have expected that to be fast enough for my own daily work. For focused tasks, it is.
+None of this runs on new hardware. The cards are Pascal and Turing generation, with 6 or 8 GB of memory each. Qwen3.6-35B runs on a single 8 GB card. Only about 3B of its parameters are active for each token, so its expert layers can sit in the machine's main memory while the card holds the rest. With 8,000 tokens in its context it reads at about 740 tokens per second and writes its answer at about 24. At 100,000 tokens it still reads at about 560. Both rates fall as the context fills up. A year ago I would not have expected that to be fast enough for my own daily work, and for focused tasks it is.
 
 **Fig. 03 · Old card, usable speed.** My own measurements, with 8,000 tokens in the context. Prefill is the model reading the prompt; decode is the model writing the answer.
 

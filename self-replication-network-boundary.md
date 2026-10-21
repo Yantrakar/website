@@ -5,7 +5,7 @@ author: Sandeep Shelke
 author_url: https://www.linkedin.com/in/sandeepshelke/
 publisher: Yantrakar AS
 date: 2026-10-21T21:15:00+02:00
-updated: 2026-10-21T21:15:00+02:00
+updated: 2026-10-21T21:18:00+02:00
 url: https://yantrakar.com/self-replication-network-boundary.html
 image: https://yantrakar.com/assets/blog/self-replication-network-boundary/og.png
 ---
@@ -33,7 +33,7 @@ Source: [Anthropic, AI models may be capable of self-replicating without access 
 
 ## Slow is still usable
 
-Fig. 01 puts the TV boxes next to my setup, running the same model. My old card writes answers about 45 times faster, though the two numbers are not measured the same way. For a replicator, slow is enough. It has no deadline.
+Fig. 01 puts the TV boxes next to my setup, running the same model. My old card writes answers about 45 times faster, though the two numbers are not measured the same way. For a replicator, slow is enough.
 
 **Fig. 01 · Slow is still usable.** The same model, Gemma4-26B-A4B, on both sides. The TV boxes are from Anthropic's Frontier Red Team, the card is my own setup. Measured differently, shown for scale.
 
