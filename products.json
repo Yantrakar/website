@@ -7,7 +7,7 @@
       "repo": "gitpro",
       "name": "gitpro",
       "tag": "OPEN SOURCE",
-      "text": "The right git name, email and SSH key for every repo, set once per GitHub or GitLab account. It also stops AI coding assistants from committing or pushing under the wrong identity.",
+      "text": "The right git name, email and SSH key in every repository, for you and the AI agents that commit for you.",
       "install": "pipx install gitpro",
       "links": [
         {

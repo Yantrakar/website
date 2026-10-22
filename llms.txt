@@ -1,6 +1,6 @@
 # Yantrakar AS
 
-> Founder-led software company in Stavanger, Norway (since 2020), run by Sandeep Shelke. Software for machines that work together, and private AI that runs inside a company network for data that can't leave the building.
+> Founder-led software company in Stavanger, Norway (since 2020), run by Sandeep Shelke. Software for machines that work together, and private AI that runs inside a company network for data that cannot leave the building.
 
 ## Pages
 

@@ -20,6 +20,16 @@
 			mark(v); st.textContent = label(v);
 		};
 	}
+	/* Release links: the build writes the tag it saw; swap in GitHub's latest so a new release shows before the next build. Kept for an hour per tab; on any error the built link stays. */
+	d.querySelectorAll('a[data-release]').forEach(a => {
+		const repo = a.dataset.release, key = 'yk-rel:' + repo;
+		const show = r => { if (r && r.tag && r.url && /^https:\/\/github\.com\//.test(r.url)) { a.href = r.url; a.firstChild.nodeValue = 'Release ' + r.tag + ' →'; } };
+		try { const c = JSON.parse(sessionStorage.getItem(key)); if (c && Date.now() - c.t < 36e5) return show(c); } catch (e) { }
+		fetch('https://api.github.com/repos/' + repo + '/releases/latest', { headers: { Accept: 'application/vnd.github+json' } })
+			.then(r => r.ok ? r.json() : null)
+			.then(j => { if (!j) return; const r = { tag: j.tag_name, url: j.html_url, t: Date.now() }; show(r); try { sessionStorage.setItem(key, JSON.stringify(r)); } catch (e) { } })
+			.catch(() => { });
+	});
 	if (matchMedia('(prefers-reduced-motion: reduce)').matches || !window.IntersectionObserver) return;
 	const SPD = [0.18, 0.5, 1.5], BLD = {}, figs = [];
 	let raf = 0, last = 0;

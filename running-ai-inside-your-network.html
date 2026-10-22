@@ -23,9 +23,8 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="preload" href="assets/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="styles.css">
 <script src="site.js" defer></script>
 <style>
@@ -40,13 +39,13 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
 <div class="wrap bar">
-<a class="wordmark" href="index.html"><svg class="wm-mark" viewBox="0 0 26 26" width="18" height="18" aria-hidden="true" focusable="false"><path d="M2.00 2.00 L13.00 13.00 L24.00 2.00 M13.00 13.00 L13.00 24.00" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square" stroke-linejoin="miter"/></svg>YANTRAKAR</a>
+<a class="wordmark" href="/"><svg class="wm-mark" viewBox="0 0 26 26" width="18" height="18" aria-hidden="true" focusable="false"><path d="M2.00 2.00 L13.00 13.00 L24.00 2.00 M13.00 13.00 L13.00 24.00" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square" stroke-linejoin="miter"/></svg>YANTRAKAR</a>
 <a class="btn btn-primary btn-sm bar-cta" href="#contact">Contact</a>
 <nav class="nav" aria-label="Main">
 <ul>
 <li><a href="robotics.html">Robotics</a></li>
 <li><a href="private-ai.html">Private AI</a></li>
-<li class="nav-optional"><a href="index.html#products">Products</a></li>
+<li class="nav-optional"><a href="/#products">Products</a></li>
 <li><a href="about.html">About</a></li>
 <li class="nav-contact"><a class="btn btn-primary btn-sm" href="#contact">Contact</a></li>
 </ul>
@@ -175,7 +174,7 @@
 <div class="fig-body cq">
 <svg class="wv sw" viewBox="0 0 760 360" role="img" aria-labelledby="f02w-t f02w-d" xmlns="http://www.w3.org/2000/svg">
 <title id="f02w-t">Five models on five cards, all inside the network</title>
-<desc id="f02w-d">People use LibreChat as the main chat front end and pick a model there. Each model has a card of its own. The chat, vision and embedding models sit behind one local router on a single address, which passes each request to the card that serves the model it names: Qwen3.6-35B for chat and coding at about 24 tokens per second, Qwen3.5-4B for fast answers, the same Qwen3.5-4B with an image encoder for images and screenshots, and Qwen3-Embedding-0.6B for documents and search. The Wan 2.1 video model, for short clips, is not behind the router: it is connected as an MCP tool that the chosen model can call. Everything sits inside the company network on older 6 and 8 GB cards. Nothing leaves.</desc>
+<desc id="f02w-d">People use LibreChat as the main chat front end and pick a model there. Each model has a card of its own. The chat, vision and embedding models sit behind one local router on a single address, which passes each request to the card that serves the model it names: Qwen3.6-35B for chat and coding at about 24 tokens per second, Qwen3.5-4B for fast answers, the same Qwen3.5-4B with an image encoder for images and screenshots, and Qwen3-Embedding-0.6B for documents and search. The Wan 2.1 video model, for short clips, sits beside the router as an MCP tool that the chosen model can call. Everything sits inside the company network on older 6 and 8 GB cards. Nothing leaves.</desc>
 <defs><marker id="f02w-m" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker></defs>
 <rect class="frame" x="4" y="4" width="752" height="320" rx="4"/>
 <text class="lbl-mono" x="20" y="27">Company network · older 6 and 8 GB cards</text>
@@ -217,7 +216,7 @@
 </svg>
 <svg class="nv sw" viewBox="0 0 320 560" role="img" aria-labelledby="f02n-t f02n-d" xmlns="http://www.w3.org/2000/svg">
 <title id="f02n-t">Five models on five cards, all inside the network</title>
-<desc id="f02n-d">People use LibreChat as the main chat front end and pick a model there. Each model has a card of its own. The chat, vision and embedding models sit behind one local router on a single address, which passes each request to the card that serves the model it names: Qwen3.6-35B for chat and coding at about 24 tokens per second, Qwen3.5-4B for fast answers, the same Qwen3.5-4B with an image encoder for images and screenshots, and Qwen3-Embedding-0.6B for documents and search. The Wan 2.1 video model, for short clips, is not behind the router: it is connected as an MCP tool that the chosen model can call. Everything sits inside the company network on older 6 and 8 GB cards. Nothing leaves.</desc>
+<desc id="f02n-d">People use LibreChat as the main chat front end and pick a model there. Each model has a card of its own. The chat, vision and embedding models sit behind one local router on a single address, which passes each request to the card that serves the model it names: Qwen3.6-35B for chat and coding at about 24 tokens per second, Qwen3.5-4B for fast answers, the same Qwen3.5-4B with an image encoder for images and screenshots, and Qwen3-Embedding-0.6B for documents and search. The Wan 2.1 video model, for short clips, sits beside the router as an MCP tool that the chosen model can call. Everything sits inside the company network on older 6 and 8 GB cards. Nothing leaves.</desc>
 <defs><marker id="f02n-m" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker></defs>
 <rect class="frame" x="4" y="4" width="312" height="512" rx="4"/>
 <text class="lbl-mono" x="18" y="27">Company network</text>
@@ -564,7 +563,7 @@
 <ul>
 <li><a href="robotics.html">Robotics</a></li>
 <li><a href="private-ai.html">Private AI</a></li>
-<li><a href="index.html#products">Products</a></li>
+<li><a href="/#products">Products</a></li>
 <li><a href="about.html">About</a></li>
 <li><a href="https://www.linkedin.com/company/yantrakar/" rel="noopener">LinkedIn</a></li>
 <li><a href="#top">Back to top ↑</a></li>

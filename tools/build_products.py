@@ -6,7 +6,10 @@ up automatically: description, homepage and latest release. Entries in
 products.json add or override fields, and can list products that are not
 public repos (yet). An entry with "tagline_from" takes its text from that
 live site (meta description, og:description, or its lead paragraph), so the
-tile always says what the product's own site says. The tiles are written between these markers:
+tile always says what the product's own site says. Release links carry
+data-release="<owner>/<repo>", and site.js swaps in the latest tag from GitHub
+when the page is viewed, so a new release shows before the next build. The
+tiles are written between these markers:
 
     <!-- products:start -->  ...  <!-- products:end -->
 
@@ -148,7 +151,7 @@ def fill(entry: dict, repo: dict | None) -> dict:
             entry["links"] = links
         rel = repo.get("_release")
         if rel and rel.get("tag_name") and entry.get("show_release", True):
-            entry["release"] = {"label": rel["tag_name"], "url": rel["html_url"]}
+            entry["release"] = {"label": rel["tag_name"], "url": rel["html_url"], "repo": repo["full_name"]}
     if entry.get("tagline_from"):
         got = site_tagline(entry["tagline_from"])
         if got:
@@ -174,9 +177,12 @@ def render(items: list[dict]) -> str:
             out.append(f'<p class="term"><code><span class="prompt">$</span> {e(it["install"])}</code></p>')
         links = list(it.get("links", []))
         if it.get("release"):
-            links.append({"label": f'Release {it["release"]["label"]}', "url": it["release"]["url"]})
+            links.append({"label": f'Release {it["release"]["label"]}', "url": it["release"]["url"],
+                          "repo": it["release"]["repo"]})
         if links:
-            a = " ".join(f'<a href="{e(l["url"])}" rel="noopener">{e(l["label"])} →</a>' for l in links)
+            a = " ".join(f'<a href="{e(l["url"])}" rel="noopener"'
+                         + (f' data-release="{e(l["repo"])}"' if l.get("repo") else "")
+                         + f'>{e(l["label"])} →</a>' for l in links)
             out.append(f'<p class="tile-links">{a}</p>')
         out.append("</div>")
         out.append("</div>")
