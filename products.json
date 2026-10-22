@@ -29,6 +29,29 @@
       ]
     },
     {
+      "repo": "releasepro",
+      "name": "releasepro",
+      "tag": "OPEN SOURCE",
+      "text": "One release run for any repo: a person approves each channel, no channel publishes with a stored token, and the announcement goes last. It runs in GitHub Actions or from your own terminal.",
+      "install": "pipx install releasepro",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Yantrakar/releasepro"
+        },
+        {
+          "label": "PyPI",
+          "url": "https://pypi.org/project/releasepro/"
+        }
+      ]
+    },
+    {
+      "name": "llmpro",
+      "id": "llmpro",
+      "tag": "COMING SOON",
+      "text": "Keep your AI tools' skills, memory and history in one place, and keep secrets and the wrong git identity out of them."
+    },
+    {
       "name": "Verako",
       "id": "verako",
       "tag": "LIVE · NORWAY",
