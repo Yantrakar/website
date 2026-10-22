@@ -46,10 +46,21 @@
       ]
     },
     {
+      "repo": "llmpro",
       "name": "llmpro",
-      "id": "llmpro",
-      "tag": "COMING SOON",
-      "text": "Keep your AI tools' skills, memory and history in one place, and keep secrets and the wrong git identity out of them."
+      "tag": "OPEN SOURCE",
+      "text": "Keep AI assistant chats, memories and instructions in one git repo, with secrets redacted and checked.",
+      "install": "pipx install llmpro",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Yantrakar/llmpro"
+        },
+        {
+          "label": "PyPI",
+          "url": "https://pypi.org/project/llmpro/"
+        }
+      ]
     },
     {
       "name": "Verako",

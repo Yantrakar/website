@@ -17,6 +17,8 @@
 ## Open source
 
 - [gitpro](https://gitpro.dev): the right git name, email and SSH key per repo, picked from the remote URL (MIT)
+- [releasepro](https://github.com/Yantrakar/releasepro): one gated release run for any repo; a person approves each channel, no stored token, the announcement last (MIT)
+- [llmpro](https://github.com/Yantrakar/llmpro): AI assistant chats, memories and instructions kept in one git repo, with secrets redacted and checked (MIT)
 
 ## Contact
 
